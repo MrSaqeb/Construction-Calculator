@@ -1,0 +1,388 @@
+// ignore_for_file: deprecated_member_use
+
+import 'dart:io';
+import 'package:construction_calculator/Domain/entities/speed_history_item.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:construction_calculator/features/History/Application/unified_history_provider.dart';
+import 'package:construction_calculator/features/Screens/History_Screen.dart';
+
+class SpeedUnitConverter extends ConsumerStatefulWidget {
+  const SpeedUnitConverter({super.key});
+
+  @override
+  ConsumerState<SpeedUnitConverter> createState() => _SpeedUnitConverterState();
+}
+
+class _SpeedUnitConverterState extends ConsumerState<SpeedUnitConverter> {
+  final Color orangeColor = const Color(0xFFFF9C00);
+
+  final TextEditingController speedController = TextEditingController();
+
+  // Default selected unit
+  String selectedUnit = "Meter/Second";
+
+  // Converted values
+  Map<String, double> convertedValues = {};
+
+  // Available speed units
+  final List<String> speedUnits = [
+    'Meter/Second',
+    'Km/Hour',
+    'Miles/Hour',
+    'Knot',
+    'Foot/Second',
+  ];
+
+  // Conversion logic
+  void _calculate() {
+    final double? inputVal = double.tryParse(speedController.text);
+    if (inputVal == null) return;
+
+    // Conversion factors (base = m/s)
+    final Map<String, double> speedToMs = {
+      'Meter/Second': 1.0,
+      'Km/Hour': 0.277778, // 1 km/h = 0.277778 m/s
+      'Miles/Hour': 0.44704, // 1 mph = 0.44704 m/s
+      'Knot': 0.514444, // 1 knot = 0.514444 m/s
+      'Foot/Second': 0.3048, // 1 ft/s = 0.3048 m/s
+    };
+
+    final double baseMs = inputVal * speedToMs[selectedUnit]!;
+
+    setState(() {
+      convertedValues = {};
+      speedToMs.forEach((unit, factor) {
+        final double value = baseMs / factor;
+        convertedValues[unit] = value;
+      });
+    });
+
+    _saveHistory();
+  }
+
+  void _saveHistory() {
+    final double? inputVal = double.tryParse(speedController.text);
+    if (inputVal == null || convertedValues.isEmpty) return;
+
+    final item = SpeedHistoryItem(
+      inputValue: inputVal,
+      inputUnit: selectedUnit,
+      convertedValues: Map.from(convertedValues),
+      savedAt: DateTime.now(),
+    );
+
+    ref.read(unifiedHistoryProvider.notifier).addSpeed(item);
+  }
+
+  // DROPDOWN BUILDER
+  Widget _buildDropdown({
+    required List<String> options,
+    required String selectedValue,
+    required ValueChanged<String?> onChanged,
+  }) {
+    return DropdownButton<String>(
+      value: selectedValue,
+      icon: Icon(Icons.arrow_drop_down, color: orangeColor, size: 23),
+      elevation: 16,
+      isExpanded: true,
+      style: TextStyle(
+        color: orangeColor,
+        fontFamily: 'Poppins',
+        fontSize: 14,
+        fontWeight: FontWeight.w600,
+      ),
+      underline: Container(height: 0),
+      onChanged: onChanged,
+      selectedItemBuilder: (context) {
+        return options.map((v) => Center(child: Text(v))).toList();
+      },
+      items: options
+          .map((v) => DropdownMenuItem(value: v, child: Text(v)))
+          .toList(),
+    );
+  }
+
+  Widget _suffixInputWithDropdown({
+    String? labelText,
+    TextEditingController? controller,
+    List<String>? dropdownOptions,
+    String? selectedValue,
+    ValueChanged<String?>? onChanged,
+    TextInputType type = const TextInputType.numberWithOptions(decimal: true),
+  }) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final textColor = isDark ? Colors.white : Colors.black;
+
+    return Container(
+      height: 55,
+      decoration: BoxDecoration(
+        color: Colors.white30,
+        borderRadius: BorderRadius.circular(50),
+        border: Border.all(color: Colors.black.withOpacity(0.2), width: 0.4),
+      ),
+      child: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Row(
+              children: [
+                if (labelText != null) ...[
+                  Text(
+                    labelText,
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: textColor,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                ],
+                if (controller != null)
+                  SizedBox(
+                    width: 80,
+                    child: TextField(
+                      controller: controller,
+                      keyboardType: type,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 14,
+                        color: textColor,
+                      ),
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: '0',
+                        hintStyle: TextStyle(color: textColor.withOpacity(0.5)),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+
+          if (dropdownOptions != null && dropdownOptions.isNotEmpty)
+            Expanded(
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Container(
+                  height: 55,
+                  width: 150,
+                  decoration: BoxDecoration(
+                    color: Colors.white30,
+                    borderRadius: const BorderRadius.horizontal(
+                      left: Radius.circular(50),
+                      right: Radius.circular(50),
+                    ),
+                    border: Border.all(color: Colors.orange, width: 1),
+                  ),
+                  child: _buildDropdown(
+                    options: dropdownOptions,
+                    selectedValue: selectedValue ?? dropdownOptions.first,
+                    onChanged: (v) {
+                      if (onChanged != null) onChanged(v);
+                    },
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _resultTable(Color textColor) {
+    if (convertedValues.isEmpty) return const SizedBox.shrink();
+
+    final rows = convertedValues.entries.map((e) {
+      final unit = e.key;
+      final value = e.value;
+
+      return [unit, value.toStringAsFixed(4)];
+    }).toList();
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: Theme.of(context).brightness == Brightness.dark
+            ? Colors.grey[900]
+            : Colors.white38,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Calculation & Result',
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+              color: textColor,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Table(
+            border: TableBorder.all(color: Colors.grey.withOpacity(0.3)),
+            columnWidths: const {0: FlexColumnWidth(2), 1: FlexColumnWidth(2)},
+            children: [
+              TableRow(
+                decoration: BoxDecoration(color: Colors.white.withOpacity(0.1)),
+                children: const [
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Unit',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFFFF9C00),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Amount',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFFFF9C00),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              ...rows.map(
+                (r) => TableRow(
+                  children: r.map((c) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        c,
+                        style: TextStyle(
+                          color: textColor,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final textColor = isDark ? Colors.white : Colors.black;
+
+    return Scaffold(
+      backgroundColor: isDark ? Colors.black : Colors.grey[100],
+      appBar: AppBar(
+        backgroundColor: orangeColor,
+        leading: IconButton(
+          icon: Icon(
+            Platform.isIOS ? Icons.arrow_back_ios : Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: const Text(
+          "Speed Unit Converter",
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
+            fontSize: 18,
+          ),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.history, color: Colors.white),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const HistoryScreen()),
+              );
+            },
+          ),
+        ],
+      ),
+
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: SvgPicture.asset(
+                'assets/icons/speed_icon.svg',
+                height: 85,
+                color: orangeColor,
+              ),
+            ),
+            const SizedBox(height: 15),
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Speed",
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  color: textColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+
+            _suffixInputWithDropdown(
+              labelText: "Enter Value:",
+              controller: speedController,
+              dropdownOptions: speedUnits,
+              selectedValue: selectedUnit,
+              onChanged: (v) {
+                setState(() => selectedUnit = v!);
+              },
+            ),
+
+            const SizedBox(height: 8),
+
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: _calculate,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: orangeColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                ),
+                child: const Text(
+                  'Result',
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 8),
+
+            _resultTable(textColor),
+          ],
+        ),
+      ),
+    );
+  }
+}
