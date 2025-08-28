@@ -293,7 +293,7 @@ class _StealWeightCalculatorState extends ConsumerState<StealWeightCalculator> {
     if (volume == null) return const SizedBox.shrink();
 
     final rows = <List<String>>[
-      ['Volume', '${volume!.toStringAsFixed(3)} m³'],
+      ['Volume', '${volume!.toStringAsFixed(0)} m³'],
     ];
 
     return Container(

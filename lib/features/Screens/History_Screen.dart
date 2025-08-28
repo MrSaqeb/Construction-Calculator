@@ -959,7 +959,10 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
 
     // Result rows
     List<Map<String, String>> resultRows = [
-      {'label': 'Calculated Weight (kg) =', 'value': item.calculatedWeight},
+      {
+        'label': 'Calculated Weight =',
+        'value': double.parse(item.calculatedWeight).toStringAsFixed(0),
+      },
     ];
 
     // Sections for _buildSection
@@ -986,7 +989,6 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
     List<Map<String, String>> resultRows = [
       {'label': 'Result Value =', 'value': item.resultValue},
       {'label': 'Slope (%) =', 'value': item.toUnit},
-      //   {'label': 'Angle (°) =', 'value': item.roofAngle.toStringAsFixed(2)},
     ];
 
     // Sections for _buildSection
