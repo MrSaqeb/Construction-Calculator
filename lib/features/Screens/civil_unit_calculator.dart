@@ -212,7 +212,7 @@ class _UnitConversionCalculatorState
       style: TextStyle(
         color: orangeColor,
         fontFamily: 'Poppins',
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: FontWeight.w600,
       ),
       onChanged: (v) {
@@ -532,7 +532,7 @@ class _UnitConversionCalculatorState
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 160,
+                    width: 110,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(
@@ -574,7 +574,7 @@ class _UnitConversionCalculatorState
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 160,
+                    width: 110,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(
@@ -618,7 +618,7 @@ class _UnitConversionCalculatorState
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 150,
+                    width: 110,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(

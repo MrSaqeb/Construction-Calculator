@@ -1,6 +1,11 @@
 import 'package:construction_calculator/Core/Widgets/home_manubuttion.dart';
+import 'package:construction_calculator/features/Screens/area_calculator_home_screen.dart';
+import 'package:construction_calculator/features/Screens/bubble_level_screen1st.dart';
 import 'package:construction_calculator/features/Screens/construction_calculator.dart';
+import 'package:construction_calculator/features/Screens/draw_plain_home_screen.dart';
+import 'package:construction_calculator/features/Screens/rule_scale_screen.dart';
 import 'package:construction_calculator/features/Screens/setting_screen.dart';
+import 'package:construction_calculator/features/Screens/tank_volume_home_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -28,58 +33,94 @@ class HomeScreen extends StatelessWidget {
       {
         "icon": 'assets/icons/area_calculator_icon.svg',
         "label": "Area Calculator",
-        "onPressed": () => debugPrint('Navigate to Area Calculator'),
+        "onPressed": () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const AreaCalculatorHomeScreen()),
+          );
+        },
       },
       {
         "icon": Icons.draw_outlined,
         "label": "Draw your Plan",
-        "onPressed": () => debugPrint('Navigate to Draw your Plan'),
+        "onPressed": () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const DrawPlanScreen()),
+          );
+        },
       },
       {
         "icon": 'assets/icons/bubble.svg',
         "label": "Bubble Level",
-        "onPressed": () => debugPrint('Navigate to Bubble Level'),
+        "onPressed": () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const BubbleLevelScreen()),
+          );
+        },
       },
       {
         "icon": 'assets/icons/ruler_scale.svg',
         "label": "Ruler Scales",
-        "onPressed": () => debugPrint('Navigate to Ruler Scales'),
+        "onPressed": () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const RulerScaleScreen()),
+          );
+        },
       },
       {
         "icon": 'assets/icons/tank_volume_calculator_icon.svg',
         "label": "Tank Volume Calculator",
-        "onPressed": () => debugPrint('Navigate to Tank Volume Calculator'),
+
+        "onPressed": () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const TankVolumeHomeScreen()),
+          );
+        },
       },
-      {
-        "icon": 'assets/icons/saved_plans_icon.svg',
-        "label": "Saved Plans",
-        "onPressed": () => debugPrint('Navigate to Saved Plans'),
-      },
-      {
-        "icon": 'assets/icons/floor_plan_icon.svg',
-        "label": "Floor Plan",
-        "onPressed": () => debugPrint('Navigate to Floor Plan'),
-      },
-      {
-        "icon": Icons.receipt_long_outlined,
-        "label": "Invoices Reports",
-        "onPressed": () => debugPrint('Navigate to Invoices Reports'),
-      },
-      {
-        "icon": 'assets/icons/construction_notes_icon.svg',
-        "label": "Construction Notes",
-        "onPressed": () => debugPrint('Navigate to Construction Notes'),
-      },
-      {
-        "icon": 'assets/icons/geotechnical_eng_icon.svg',
-        "label": "Geotechnical Engineering",
-        "onPressed": () => debugPrint('Navigate to Geotechnical Engineering'),
-      },
-      {
-        "icon": Icons.menu_book_outlined,
-        "label": "Application Guides",
-        "onPressed": () => debugPrint('Navigate to Application Guides'),
-      },
+      // {
+      //   "icon": 'assets/icons/saved_plans_icon.svg',
+      //   "label": "Saved Plans",
+      //   "onPressed": () {
+      //     Navigator.push(
+      //       context,
+      //       MaterialPageRoute(builder: (_) => const SavePlainScreen()),
+      //     );
+      //   },
+      // },
+      // {
+      //   "icon": 'assets/icons/floor_plan_icon.svg',
+      //   "label": "Floor Plan",
+      //   "onPressed": () {
+      //     Navigator.push(
+      //       context,
+      //       MaterialPageRoute(builder: (_) =>  FloorPlainScreen()),
+      //     );
+      //   },
+      // },
+      // {
+      //   "icon": Icons.receipt_long_outlined,
+      //   "label": "Invoices Reports",
+      //   "onPressed": () => debugPrint('Navigate to Invoices Reports'),
+      // },
+      // {
+      //   "icon": 'assets/icons/construction_notes_icon.svg',
+      //   "label": "Construction Notes",
+      //   "onPressed": () => debugPrint('Navigate to Construction Notes'),
+      // },
+      // {
+      //   "icon": 'assets/icons/geotechnical_eng_icon.svg',
+      //   "label": "Geotechnical Engineering",
+      //   "onPressed": () => debugPrint('Navigate to Geotechnical Engineering'),
+      // },
+      // {
+      //   "icon": Icons.menu_book_outlined,
+      //   "label": "Application Guides",
+      //   "onPressed": () => debugPrint('Navigate to Application Guides'),
+      // },
     ];
 
     return Scaffold(
@@ -163,7 +204,10 @@ class HomeScreen extends StatelessWidget {
                     return HomeMenuButton(
                       icon: item['icon'],
                       label: item['label'],
-                      onPressed: item['onPressed'],
+                      circleRadius: 60, // 👈 bara circle
+                      iconSize: 35,
+                      // onPressed: item['onPressed'](),
+                      onPressed: () => item['onPressed'](),
                       isDark: isDark, // pass the dark mode flag here
                     );
                   },

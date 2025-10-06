@@ -87,7 +87,7 @@ class _StillQuantityCalulatorState
       style: TextStyle(
         color: orangeColor,
         fontFamily: 'Poppins',
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: FontWeight.w600,
       ),
       onChanged: (v) {
@@ -103,86 +103,6 @@ class _StillQuantityCalulatorState
             ),
           )
           .toList(),
-    );
-  }
-
-  Widget _suffixInput({
-    required TextEditingController controller,
-    required String unit,
-    TextInputType type = const TextInputType.numberWithOptions(decimal: true),
-  }) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final textColor = isDark ? Colors.white : Colors.black;
-
-    return Container(
-      height: 55,
-      decoration: BoxDecoration(
-        color: isDark ? Colors.grey[800] : Colors.white30,
-        borderRadius: const BorderRadius.horizontal(
-          left: Radius.circular(50),
-          right: Radius.circular(50),
-        ),
-        border: Border.all(color: Colors.black.withOpacity(0.2), width: 0.4),
-      ),
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 6),
-            child: Text(
-              "Concrete Quantity",
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: textColor,
-              ),
-            ),
-          ),
-          const SizedBox(width: 2),
-          Expanded(
-            child: TextField(
-              controller: controller,
-              keyboardType: type,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 14,
-                color: textColor,
-              ),
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                isDense: true,
-                contentPadding: EdgeInsets.zero,
-                hintText: '10',
-                hintStyle: TextStyle(color: textColor.withOpacity(0.5)),
-              ),
-            ),
-          ),
-          Container(
-            height: 55,
-            width: 55,
-            decoration: BoxDecoration(
-              color: Colors.white30,
-              borderRadius: const BorderRadius.horizontal(
-                left: Radius.circular(100),
-                right: Radius.circular(100),
-              ),
-              border: Border.all(color: orangeColor, width: 1),
-            ),
-            child: Center(
-              child: Text(
-                unit,
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                  color: orangeColor,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 
@@ -271,6 +191,73 @@ class _StillQuantityCalulatorState
     );
   }
 
+  Widget _suffixInput({
+    required TextEditingController controller,
+    required String unit,
+    TextInputType type = const TextInputType.numberWithOptions(decimal: true),
+  }) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final textColor = isDark ? Colors.white : Colors.black;
+
+    return Container(
+      height: 55,
+      decoration: BoxDecoration(
+        color: isDark ? Colors.grey[800] : Colors.white30,
+        borderRadius: const BorderRadius.horizontal(
+          left: Radius.circular(50),
+          right: Radius.circular(50),
+        ),
+        border: Border.all(color: Colors.black.withOpacity(0.2), width: 0.4),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: TextField(
+              controller: controller,
+              keyboardType: type,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                color: textColor,
+              ),
+              decoration: InputDecoration(
+                hintText: 'Enter Concrete Quantity', // ✅ hint ke taur pe
+                hintStyle: TextStyle(color: textColor.withOpacity(0.5)),
+                border: InputBorder.none,
+                isDense: true,
+                contentPadding: EdgeInsets.zero,
+              ),
+            ),
+          ),
+          Container(
+            height: 55,
+            width: 55,
+            decoration: BoxDecoration(
+              color: Colors.white30,
+              borderRadius: const BorderRadius.horizontal(
+                left: Radius.circular(100),
+                right: Radius.circular(100),
+              ),
+              border: Border.all(color: orangeColor, width: 1),
+            ),
+            child: Center(
+              child: Text(
+                unit,
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: orangeColor,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -326,7 +313,7 @@ class _StillQuantityCalulatorState
               height: 55,
               decoration: BoxDecoration(
                 color: Colors.white30,
-                borderRadius: BorderRadius.circular(50),
+                borderRadius: BorderRadius.circular(45),
                 border: Border.all(
                   color: Colors.black.withOpacity(0.2),
                   width: 0.4,
@@ -335,7 +322,7 @@ class _StillQuantityCalulatorState
               child: Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: const EdgeInsets.only(left: 10),
                     child: Text(
                       'Member Type',
                       style: TextStyle(
@@ -349,7 +336,7 @@ class _StillQuantityCalulatorState
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 160,
+                    width: 110,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(

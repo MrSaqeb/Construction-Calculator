@@ -256,7 +256,7 @@ class _ChannelBarCalculatorState extends ConsumerState<ChannelBarCalculator> {
                       fontFamily: 'Poppins',
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
-                      color: textColor,
+                      color: textColor.withOpacity(0.5),
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -271,12 +271,12 @@ class _ChannelBarCalculatorState extends ConsumerState<ChannelBarCalculator> {
                       style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 14,
-                        color: textColor,
+                        color: textColor.withOpacity(0.5),
                       ),
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: '0',
-                        hintStyle: TextStyle(color: textColor.withOpacity(0.5)),
+                        // hintText: '0',
+                        // hintStyle: TextStyle(color: textColor.withOpacity(0.5)),
                       ),
                     ),
                   ),
@@ -291,7 +291,7 @@ class _ChannelBarCalculatorState extends ConsumerState<ChannelBarCalculator> {
                 alignment: Alignment.centerRight,
                 child: Container(
                   height: 55,
-                  width: 150,
+                  width: 90,
                   decoration: BoxDecoration(
                     color: Colors.white30,
                     borderRadius: const BorderRadius.horizontal(
@@ -340,7 +340,7 @@ class _ChannelBarCalculatorState extends ConsumerState<ChannelBarCalculator> {
                 fontFamily: 'Poppins',
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
-                color: textColor,
+                color: textColor.withOpacity(0.5),
               ),
             ),
           ],
@@ -358,8 +358,8 @@ class _ChannelBarCalculatorState extends ConsumerState<ChannelBarCalculator> {
               ),
               decoration: InputDecoration(
                 border: InputBorder.none,
-                hintText: '0',
-                hintStyle: TextStyle(color: textColor.withOpacity(0.5)),
+                // hintText: '0',
+                // hintStyle: TextStyle(color: textColor.withOpacity(0.5)),
               ),
             ),
           ),
@@ -559,7 +559,7 @@ class _ChannelBarCalculatorState extends ConsumerState<ChannelBarCalculator> {
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 150,
+                    width: 110,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(
@@ -581,7 +581,7 @@ class _ChannelBarCalculatorState extends ConsumerState<ChannelBarCalculator> {
             const SizedBox(height: 8),
 
             _suffixInputWithDropdown(
-              labelText: "Sizet(A)", // Label
+              labelText: "Enter Size (A)", // Label
               controller: sizeAController, // Input Field
               dropdownOptions: lengthUnitOptions, // Dropdown List
               selectedValue: selectedLengthUnit, // Dropdown Selected
@@ -593,7 +593,7 @@ class _ChannelBarCalculatorState extends ConsumerState<ChannelBarCalculator> {
             const SizedBox(height: 8),
 
             _suffixInputWithDropdown(
-              labelText: "Size(T)", // Label
+              labelText: "Enter Size (T)", // Label
               controller: sizeTController, // Input Field
               dropdownOptions: lengthUnitOptions, // Dropdown List
               selectedValue: selectedLengthUnit, // Dropdown Selected
@@ -604,7 +604,7 @@ class _ChannelBarCalculatorState extends ConsumerState<ChannelBarCalculator> {
             const SizedBox(height: 8),
 
             _suffixInputWithDropdown(
-              labelText: "Size(B)", // Label
+              labelText: "Enter Size(B)", // Label
               controller: sizeBController, // Input Field
               dropdownOptions: lengthUnitOptions, // Dropdown List
               selectedValue: selectedLengthUnit, // Dropdown Selected
@@ -615,7 +615,7 @@ class _ChannelBarCalculatorState extends ConsumerState<ChannelBarCalculator> {
             const SizedBox(height: 8),
 
             _suffixInputWithDropdown(
-              labelText: "Size (S)", // Label
+              labelText: "Enter Size (S)", // Label
               controller: sizeSController, // Input Field
               dropdownOptions: lengthUnitOptions, // Dropdown List
               selectedValue: selectedLengthUnit, // Dropdown Selected
@@ -626,7 +626,7 @@ class _ChannelBarCalculatorState extends ConsumerState<ChannelBarCalculator> {
             const SizedBox(height: 8),
 
             _suffixInputWithDropdown(
-              labelText: "Length", // Label
+              labelText: "Enter Length Value", // Label
               controller: lengthController, // Input Field
               dropdownOptions: lengthUnitOptions, // Dropdown List
               selectedValue: selectedLengthUnit, // Dropdown Selected
@@ -635,14 +635,14 @@ class _ChannelBarCalculatorState extends ConsumerState<ChannelBarCalculator> {
             ),
             const SizedBox(height: 8),
             _suffixInput(
-              textarea: "Quantity",
+              textarea: "Enter Quantity",
               controller: piecesController,
               unit: "Pcs",
             ),
             const SizedBox(height: 8),
 
             _suffixInputWithDropdown(
-              labelText: "Steal Cost",
+              labelText: "Enter Steal Cost Value",
               controller: costOfSteelController,
               dropdownOptions: weightUnitOptions,
               selectedValue: selectedWeightUnit,

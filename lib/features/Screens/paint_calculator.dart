@@ -574,7 +574,7 @@ class _PaintCalculationScreenState
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 180,
+                    width: 100,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(

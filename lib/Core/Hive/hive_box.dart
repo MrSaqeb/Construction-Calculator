@@ -40,4 +40,28 @@ class HiveBoxes {
   static const String pressureHistory = 'pressure_history';
   static const String massHistory = 'mass_history';
   static const String timeHistory = 'time_history';
+
+  //Area converter
+  static const String circleHistory = 'circle_history';
+
+  static const String rectangleHistory = 'rectangle_history';
+  static const String lShapeHistory = 'lshape_history';
+  static const String trapeziumHistory = 'trapezium_history';
+  static const String hemisphereHistory = 'hemisphere_history';
+  static const String sectorHistory = 'sector_history';
+  static const String archHistory = 'arch_history';
+  static const String rectangleWithSlotHistory = 'rectangle_slot_history';
+
+  //tank volume
+  static const String verticalHistory = 'vertical_cylinder_history';
+  static const String horizontalCylinderHistory = 'horizontal_cylinder_history';
+  static const String rectangularPrismHistory = 'rectangular_prism_history';
+  static const String verticalCapsuleHistory = 'vertical_capsule_history';
+  static const String horizontalCapsuleHistory = 'horizontal_capsule_history';
+  static const String verticalEllipticalHistory = 'vertical_elliptical_history';
+  static const String horizontalEllipticalHistory =
+      'horizontal_elliptical_history';
+  static const String coneBottomHistory = 'cone_bottom_history';
+  static const String coneTopHistory = 'cone_top_history';
+  static const String frustumHistory = 'frustum_history';
 }

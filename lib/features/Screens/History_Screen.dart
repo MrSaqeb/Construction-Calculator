@@ -1,31 +1,45 @@
 // ignore_for_file: deprecated_member_use, prefer_interpolation_to_compose_strings
 
 import 'dart:io';
+import 'package:construction_calculator/Domain/entities/Lshape_history_item.dart';
 import 'package:construction_calculator/Domain/entities/air_history_item.dart';
 import 'package:construction_calculator/Domain/entities/angle_history_item.dart';
 import 'package:construction_calculator/Domain/entities/anti_termite_history_item.dart';
+import 'package:construction_calculator/Domain/entities/arch_history_item.dart';
 import 'package:construction_calculator/Domain/entities/beam_steal_history_item.dart';
 import 'package:construction_calculator/Domain/entities/boundary_wall_history_item.dart';
 import 'package:construction_calculator/Domain/entities/brick_history_item.dart';
 import 'package:construction_calculator/Domain/entities/cement_history_item.dart';
+import 'package:construction_calculator/Domain/entities/circle_history_item.dart';
 import 'package:construction_calculator/Domain/entities/civilunitconversion_history_item.dart';
 import 'package:construction_calculator/Domain/entities/concrete_tube_history_item.dart';
 import 'package:construction_calculator/Domain/entities/concreteblock_history_item.dart';
+import 'package:construction_calculator/Domain/entities/cone_bottom_history_item.dart';
+import 'package:construction_calculator/Domain/entities/cone_top_history_item.dart';
 import 'package:construction_calculator/Domain/entities/construction_cost_history_item.dart';
 import 'package:construction_calculator/Domain/entities/distance_history_item.dart';
 import 'package:construction_calculator/Domain/entities/excavation_history_item.dart';
 import 'package:construction_calculator/Domain/entities/flooring_history_item.dart';
 import 'package:construction_calculator/Domain/entities/frequency_history_item.dart';
+import 'package:construction_calculator/Domain/entities/frustum_history_item.dart';
 import 'package:construction_calculator/Domain/entities/fuel_history_item.dart';
+import 'package:construction_calculator/Domain/entities/hemisphere_history_item.dart';
+import 'package:construction_calculator/Domain/entities/horizontal_capsule_item.dart';
+import 'package:construction_calculator/Domain/entities/horizontal_cylinder_item.dart';
+import 'package:construction_calculator/Domain/entities/horizontal_elliptical_item.dart';
 import 'package:construction_calculator/Domain/entities/kitchen_history_item.dart';
 import 'package:construction_calculator/Domain/entities/mass_history_item.dart';
 import 'package:construction_calculator/Domain/entities/paint_history_item.dart';
 import 'package:construction_calculator/Domain/entities/plaster_history_item.dart';
 import 'package:construction_calculator/Domain/entities/plywood_sheet_history_item.dart';
 import 'package:construction_calculator/Domain/entities/pressure_history_item.dart';
+import 'package:construction_calculator/Domain/entities/rectangle_history_item.dart';
+import 'package:construction_calculator/Domain/entities/rectangleslot_history_item.dart';
+import 'package:construction_calculator/Domain/entities/rectangular_prism_item.dart';
 import 'package:construction_calculator/Domain/entities/roof_pitch_history_item.dart';
 import 'package:construction_calculator/Domain/entities/round_column_history_item.dart';
 import 'package:construction_calculator/Domain/entities/round_steal_history_item.dart';
+import 'package:construction_calculator/Domain/entities/sector_history_item.dart';
 import 'package:construction_calculator/Domain/entities/solar_roofttop_history_item.dart';
 import 'package:construction_calculator/Domain/entities/solor_waterheater_history_item.dart';
 import 'package:construction_calculator/Domain/entities/speed_history_item.dart';
@@ -35,6 +49,9 @@ import 'package:construction_calculator/Domain/entities/steal_we_history_item.da
 import 'package:construction_calculator/Domain/entities/steal_weight_history_item.dart';
 import 'package:construction_calculator/Domain/entities/time_history_item.dart';
 import 'package:construction_calculator/Domain/entities/topsoil_history_item.dart';
+import 'package:construction_calculator/Domain/entities/vertical_capsule_item.dart';
+import 'package:construction_calculator/Domain/entities/vertical_cylinder_item.dart';
+import 'package:construction_calculator/Domain/entities/vertical_elliptical_item.dart';
 import 'package:construction_calculator/Domain/entities/water_sump_history_item.dart';
 import 'package:construction_calculator/Domain/entities/wood_frame_history_item.dart';
 import 'package:construction_calculator/features/History/Application/unified_history_provider.dart';
@@ -143,6 +160,24 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
     bool hasAngleData = item.type == "angle_history";
     bool hasFuelData = item.type == "fuel_history";
     bool hasspeedData = item.type == "speed_history";
+    bool hascircledata = item.type == "circle_history";
+    bool hasRectangleData = item.type == "rectangle_history";
+    bool hasLShapeData = item.type == "lshape_history";
+    bool hasHemisphereData = item.type == "hemisphere_history";
+    bool hasSectorData = item.type == "sector_history";
+    bool hasArchData = item.type == "arch_history";
+    bool hasRectangleSlotData = item.type == "rectangle_slot_history";
+    bool hasverticalData = item.type == "vertical_cylinder_history";
+    bool hasHorizontalCylinderData = item.type == "horizontal_cylinder_history";
+    bool hasRectangularPrismData = item.type == "rectangular_prism_history";
+    bool hasVerticalCapsuleData = item.type == "vertical_capsule_history";
+    bool hasHorizontalCapsuleData = item.type == "horizontal_capsule_history";
+    bool hasVerticalEllipticalData = item.type == "vertical_elliptical_history";
+    bool hasHorizontalEllipticalData =
+        item.type == "horizontal_elliptical_history";
+    bool hasConeBottomData = item.type == "cone_bottom_history";
+    bool hasConeTopData = item.type == "cone_top_history";
+    bool hasFrustumData = item.type == "frustum_history";
 
     String cardTitle;
     String iconPath;
@@ -255,6 +290,57 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
     } else if (hasAngleData) {
       cardTitle = "Angle Converter";
       iconPath = 'assets/icons/angle_icon.svg';
+    } else if (hascircledata) {
+      cardTitle = "Circle Area Converter";
+      iconPath = 'assets/icons/circle.svg';
+    } else if (hasRectangleData) {
+      cardTitle = "Rectangle Area Converter";
+      iconPath = 'assets/icons/rectangle.svg';
+    } else if (hasLShapeData) {
+      cardTitle = "L-Shape Area Converter";
+      iconPath = 'assets/icons/lShape.svg';
+    } else if (hasHemisphereData) {
+      cardTitle = "Hemisphere  Converter";
+      iconPath = 'assets/icons/hemisphare.svg';
+    } else if (hasSectorData) {
+      cardTitle = "Sector Area Converter";
+      iconPath = 'assets/icons/sector.svg';
+    } else if (hasArchData) {
+      cardTitle = "Arch  Converter";
+      iconPath = 'assets/icons/arch.svg';
+    } else if (hasRectangleSlotData) {
+      cardTitle = "Rectangle Slot Converter";
+      iconPath = 'assets/icons/rectangle.svg';
+    } else if (hasverticalData) {
+      cardTitle = "Vertical Sylinder";
+      iconPath = 'assets/icons/Vector.svg';
+    } else if (hasHorizontalCylinderData) {
+      cardTitle = "Horizontal Cylinder";
+      iconPath = 'assets/icons/horizontal.svg';
+    } else if (hasRectangularPrismData) {
+      cardTitle = "Rectangular Prism";
+      iconPath = 'assets/icons/tankrectangle.svg';
+    } else if (hasVerticalCapsuleData) {
+      cardTitle = "Vertical Capsule";
+      iconPath = 'assets/icons/vertical_capsule_icon.svg';
+    } else if (hasHorizontalCapsuleData) {
+      cardTitle = "Horizontal Capsule";
+      iconPath = 'assets/icons/horizontal_capsule_icon.svg';
+    } else if (hasVerticalEllipticalData) {
+      cardTitle = "Vertical Elliptical";
+      iconPath = 'assets/icons/vertical_elliptical_icon.svg';
+    } else if (hasHorizontalEllipticalData) {
+      cardTitle = "Horizontal Elliptical";
+      iconPath = 'assets/icons/horizontal_elliptical_icon.svg';
+    } else if (hasConeBottomData) {
+      cardTitle = "Cone Bottom";
+      iconPath = 'assets/icons/cone_bottom_icon.svg';
+    } else if (hasConeTopData) {
+      cardTitle = "Cone Top";
+      iconPath = 'assets/icons/cone_top_icon.svg';
+    } else if (hasFrustumData) {
+      cardTitle = "Frustum";
+      iconPath = 'assets/icons/frustum_icon.svg';
     } else {
       cardTitle = "Calculation";
       iconPath = 'assets/icons/construction_cost_icon.svg';
@@ -371,6 +457,69 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
     } else if (item.type == "speed_history") {
       final data = item.data as SpeedHistoryItem;
       subtitle = "Unit: ${data.inputUnit}";
+    } else if (item.type == "circle_history") {
+      final data = item.data as CircleHistoryItem;
+      subtitle = "Area: ${data.resultValue.toStringAsFixed(2)} ";
+    } else if (item.type == "rectangle_history") {
+      final data = item.data as RectangleHistoryItem;
+      subtitle = "Area: ${data.area.toStringAsFixed(2)} ${data.unit}";
+    } else if (item.type == "lshape_history") {
+      final data = item.data as LShapeHistoryItem;
+      subtitle = "Area: ${data.area.toStringAsFixed(2)} ${data.unit}";
+    } else if (item.type == "hemisphere_history") {
+      final data = item.data as HemisphereHistoryItem;
+      subtitle =
+          "Area: ${data.volume.toStringAsFixed(2)} ${data.unit}, Volume: ${data.volume.toStringAsFixed(2)} ${data.unit}";
+    } else if (item.type == "sector_history") {
+      final data = item.data as SectorHistoryItem;
+      subtitle = "Area: ${data.area.toStringAsFixed(2)} ${data.unit}";
+    } else if (item.type == "arch_history") {
+      final data = item.data as ArchHistoryItem;
+      subtitle =
+          "Area: ${data.area.toStringAsFixed(2)} ${data.unit}, Perimeter: ${data.perimeter.toStringAsFixed(2)} ${data.unit}";
+    } else if (item.type == "rectangle_slot_history") {
+      final data = item.data as RectangleWithSlotHistoryItem;
+      subtitle = "Area: ${data.area.toStringAsFixed(2)} ${data.unit}";
+    } else if (item.type == "vertical_cylinder_history") {
+      final data = item.data as VerticalCylinderHistoryItem;
+      subtitle =
+          "Total Volume: ${data.totalVolume.toStringAsFixed(2)} ${data.unit}";
+    } else if (item.type == "horizontal_cylinder_history") {
+      final data = item.data as HorizontalCylinderItem;
+      subtitle =
+          "Total Volume: ${data.totalVolume.toStringAsFixed(2)} ${data.unit}";
+    } else if (item.type == "rectangular_prism_history") {
+      final data = item.data as RectangularPrismItem;
+      subtitle =
+          "Total Volume: ${data.totalVolume.toStringAsFixed(2)} ${data.unit}";
+    } else if (item.type == "vertical_capsule_history") {
+      final data = item.data as VerticalCapsuleItem;
+      subtitle =
+          "Total Volume: ${data.totalVolume.toStringAsFixed(2)} ${data.unit}";
+    } else if (item.type == "horizontal_capsule_history") {
+      final data = item.data as HorizontalCapsuleItem;
+      subtitle =
+          "Total Volume: ${data.totalVolume.toStringAsFixed(2)} ${data.unit}";
+    } else if (item.type == "vertical_elliptical_history") {
+      final data = item.data as VerticalEllipticalItem;
+      subtitle =
+          "Total Volume: ${data.totalVolume.toStringAsFixed(2)} ${data.unit}";
+    } else if (item.type == "horizontal_elliptical_history") {
+      final data = item.data as HorizontalEllipticalHistoryItem;
+      subtitle =
+          "Total Volume: ${data.totalVolume.toStringAsFixed(2)} ${data.unit}";
+    } else if (item.type == "cone_bottom_history") {
+      final data = item.data as ConeBottomHistoryItem;
+      subtitle =
+          "Total Volume: ${data.totalVolume.toStringAsFixed(2)} ${data.unit}";
+    } else if (item.type == "cone_top_history") {
+      final data = item.data as ConeTopHistoryItem;
+      subtitle =
+          "Total Volume: ${data.totalVolume.toStringAsFixed(2)} ${data.unit}";
+    } else if (item.type == "frustum_history") {
+      final data = item.data as FrustumHistoryItem;
+      subtitle =
+          "Total Volume: ${data.totalVolume.toStringAsFixed(2)} ${data.unit}";
     }
 
     return Container(
@@ -567,11 +716,633 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                     _buildFuelHistoryCard(item.data as FuelHistoryItem),
                   if (hasspeedData)
                     _buildSpeedHistoryCard(item.data as SpeedHistoryItem),
+                  if (hascircledata)
+                    _buildCircleHistorySection(item.data as CircleHistoryItem),
+                  if (hasRectangleData)
+                    _buildRectangleHistorySection(
+                      item.data as RectangleHistoryItem,
+                    ),
+                  if (hasLShapeData)
+                    _buildLShapeHistorySection(item.data as LShapeHistoryItem),
+
+                  if (hasHemisphereData)
+                    _buildHemisphereHistorySection(
+                      item.data as HemisphereHistoryItem,
+                    ),
+                  if (hasSectorData)
+                    _buildSectorHistorySection(item.data as SectorHistoryItem),
+                  if (hasArchData)
+                    _buildArchHistorySection(item.data as ArchHistoryItem),
+                  if (hasRectangleSlotData)
+                    _buildRectangleSlotHistorySection(
+                      item.data as RectangleWithSlotHistoryItem,
+                    ),
+                  if (hasverticalData)
+                    _buildVerticalCylinderHistorySection(
+                      item.data as VerticalCylinderHistoryItem,
+                    ),
+                  if (hasHorizontalCylinderData)
+                    _buildHorizontalCylinderHistorySection(
+                      item.data as HorizontalCylinderItem,
+                    ),
+                  if (hasRectangularPrismData)
+                    _buildRectangularPrismHistorySection(
+                      item.data as RectangularPrismItem,
+                    ),
+                  if (hasVerticalCapsuleData)
+                    _buildVerticalCapsuleHistorySection(
+                      item.data as VerticalCapsuleItem,
+                    ),
+                  if (hasHorizontalCapsuleData)
+                    _buildHorizontalCapsuleHistorySection(
+                      item.data as HorizontalCapsuleItem,
+                    ),
+                  if (hasVerticalEllipticalData)
+                    _buildVerticalEllipticalHistorySection(
+                      item.data as VerticalEllipticalItem,
+                    ),
+                  if (hasHorizontalEllipticalData)
+                    _buildHorizontalEllipticalHistorySection(
+                      item.data as HorizontalEllipticalHistoryItem,
+                    ),
+                  if (hasConeBottomData)
+                    _buildConeBottomHistorySection(
+                      item.data as ConeBottomHistoryItem,
+                    ),
+                  if (hasConeTopData)
+                    _buildConeTopHistorySection(
+                      item.data as ConeTopHistoryItem,
+                    ),
+                  if (hasFrustumData)
+                    _buildFrustumHistorySection(
+                      item.data as FrustumHistoryItem,
+                    ),
                 ],
               ),
             ),
         ],
       ),
+    );
+  }
+
+  // 1. Horizontal Cylinder
+  Widget _buildHorizontalCylinderHistorySection(HorizontalCylinderItem item) {
+    List<Map<String, String>> inputRows = [
+      {
+        'label': 'Diameter =',
+        'value': "${item.diameter.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Length =',
+        'value': "${item.length.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Filled Height =',
+        'value': "${item.filledHeight.toStringAsFixed(2)} ${item.unit}",
+      },
+    ];
+
+    List<Map<String, String>> resultRows = [
+      {'label': 'Total Volume =', 'value': item.totalVolume.toStringAsFixed(3)},
+      {
+        'label': 'Filled Volume =',
+        'value': item.filledVolume.toStringAsFixed(3),
+      },
+    ];
+
+    List<Map<String, dynamic>> data = [
+      {'heading': 'Inputs', 'data': inputRows},
+      {'heading': 'Result', 'data': resultRows},
+    ];
+
+    return _buildSection(
+      contentSections: data,
+      mainHeading: 'Horizontal Cylinder History',
+    );
+  }
+
+  // 2. Rectangular Prism
+  Widget _buildRectangularPrismHistorySection(RectangularPrismItem item) {
+    List<Map<String, String>> inputRows = [
+      {
+        'label': 'Length =',
+        'value': "${item.length.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Width =',
+        'value': "${item.width.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Height =',
+        'value': "${item.height.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Filled Height =',
+        'value': "${item.filledHeight.toStringAsFixed(2)} ${item.unit}",
+      },
+    ];
+
+    List<Map<String, String>> resultRows = [
+      {'label': 'Total Volume =', 'value': item.totalVolume.toStringAsFixed(3)},
+      {
+        'label': 'Filled Volume =',
+        'value': item.filledVolume.toStringAsFixed(3),
+      },
+    ];
+
+    return _buildSection(
+      contentSections: [
+        {'heading': 'Inputs', 'data': inputRows},
+        {'heading': 'Result', 'data': resultRows},
+      ],
+      mainHeading: 'Rectangular Prism History',
+    );
+  }
+
+  // 3. Vertical Capsule
+  Widget _buildVerticalCapsuleHistorySection(VerticalCapsuleItem item) {
+    List<Map<String, String>> inputRows = [
+      {
+        'label': 'Diameter =',
+        'value': "${item.diameter.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Cylinder Height =',
+        'value': "${item.cylinderHeight.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Filled Height =',
+        'value': "${item.filledHeight.toStringAsFixed(2)} ${item.unit}",
+      },
+    ];
+
+    List<Map<String, String>> resultRows = [
+      {'label': 'Total Volume =', 'value': item.totalVolume.toStringAsFixed(3)},
+      {
+        'label': 'Filled Volume =',
+        'value': item.filledVolume.toStringAsFixed(3),
+      },
+    ];
+
+    return _buildSection(
+      contentSections: [
+        {'heading': 'Inputs', 'data': inputRows},
+        {'heading': 'Result', 'data': resultRows},
+      ],
+      mainHeading: 'Vertical Capsule History',
+    );
+  }
+
+  // 4. Horizontal Capsule
+  Widget _buildHorizontalCapsuleHistorySection(HorizontalCapsuleItem item) {
+    List<Map<String, String>> inputRows = [
+      {
+        'label': 'Diameter =',
+        'value': "${item.diameter.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Cylinder Length =',
+        'value': "${item.cylinderLength.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Filled Length =',
+        'value': "${item.filledLength.toStringAsFixed(2)} ${item.unit}",
+      },
+    ];
+
+    List<Map<String, String>> resultRows = [
+      {'label': 'Total Volume =', 'value': item.totalVolume.toStringAsFixed(3)},
+      {
+        'label': 'Filled Volume =',
+        'value': item.filledVolume.toStringAsFixed(3),
+      },
+    ];
+
+    return _buildSection(
+      contentSections: [
+        {'heading': 'Inputs', 'data': inputRows},
+        {'heading': 'Result', 'data': resultRows},
+      ],
+      mainHeading: 'Horizontal Capsule History',
+    );
+  }
+
+  // 5. Vertical Elliptical
+  Widget _buildVerticalEllipticalHistorySection(VerticalEllipticalItem item) {
+    List<Map<String, String>> inputRows = [
+      {
+        'label': 'Length =',
+        'value': "${item.length.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Width =',
+        'value': "${item.width.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Height =',
+        'value': "${item.height.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Filled Height =',
+        'value': "${item.filledHeight.toStringAsFixed(2)} ${item.unit}",
+      },
+    ];
+
+    List<Map<String, String>> resultRows = [
+      {'label': 'Total Volume =', 'value': item.totalVolume.toStringAsFixed(3)},
+      {
+        'label': 'Filled Volume =',
+        'value': item.filledVolume.toStringAsFixed(3),
+      },
+    ];
+
+    return _buildSection(
+      contentSections: [
+        {'heading': 'Inputs', 'data': inputRows},
+        {'heading': 'Result', 'data': resultRows},
+      ],
+      mainHeading: 'Vertical Elliptical History',
+    );
+  }
+
+  // 6. Horizontal Elliptical
+  Widget _buildHorizontalEllipticalHistorySection(
+    HorizontalEllipticalHistoryItem item,
+  ) {
+    List<Map<String, String>> inputRows = [
+      {
+        'label': 'Length =',
+        'value': "${item.length.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Width =',
+        'value': "${item.width.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Height =',
+        'value': "${item.height.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Filled =',
+        'value': "${item.filled.toStringAsFixed(2)} ${item.unit}",
+      },
+    ];
+
+    List<Map<String, String>> resultRows = [
+      {'label': 'Total Volume =', 'value': item.totalVolume.toStringAsFixed(3)},
+      {
+        'label': 'Filled Volume =',
+        'value': item.filledVolume.toStringAsFixed(3),
+      },
+    ];
+
+    return _buildSection(
+      contentSections: [
+        {'heading': 'Inputs', 'data': inputRows},
+        {'heading': 'Result', 'data': resultRows},
+      ],
+      mainHeading: 'Horizontal Elliptical History',
+    );
+  }
+
+  // 7. Cone Bottom
+  Widget _buildConeBottomHistorySection(ConeBottomHistoryItem item) {
+    List<Map<String, String>> inputRows = [
+      {
+        'label': 'Top Diameter =',
+        'value': "${item.topDiameter.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Bottom Diameter =',
+        'value': "${item.bottomDiameter.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Cylinder Height =',
+        'value': "${item.cylinderHeight.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Cone Height =',
+        'value': "${item.coneHeight.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Filled Height =',
+        'value': "${item.filledHeight.toStringAsFixed(2)} ${item.unit}",
+      },
+    ];
+
+    List<Map<String, String>> resultRows = [
+      {'label': 'Total Volume =', 'value': item.totalVolume.toStringAsFixed(3)},
+      {
+        'label': 'Filled Volume =',
+        'value': item.filledVolume.toStringAsFixed(3),
+      },
+    ];
+
+    return _buildSection(
+      contentSections: [
+        {'heading': 'Inputs', 'data': inputRows},
+        {'heading': 'Result', 'data': resultRows},
+      ],
+      mainHeading: 'Cone Bottom History',
+    );
+  }
+
+  // 8. Cone Top
+  Widget _buildConeTopHistorySection(ConeTopHistoryItem item) {
+    List<Map<String, String>> inputRows = [
+      {
+        'label': 'Top Diameter =',
+        'value': "${item.topDiameter.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Bottom Diameter =',
+        'value': "${item.bottomDiameter.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Cylinder Height =',
+        'value': "${item.cylinderHeight.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Cone Height =',
+        'value': "${item.coneHeight.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Filled Height =',
+        'value': "${item.filledHeight.toStringAsFixed(2)} ${item.unit}",
+      },
+    ];
+
+    List<Map<String, String>> resultRows = [
+      {'label': 'Total Volume =', 'value': item.totalVolume.toStringAsFixed(3)},
+      {
+        'label': 'Filled Volume =',
+        'value': item.filledVolume.toStringAsFixed(3),
+      },
+    ];
+
+    return _buildSection(
+      contentSections: [
+        {'heading': 'Inputs', 'data': inputRows},
+        {'heading': 'Result', 'data': resultRows},
+      ],
+      mainHeading: 'Cone Top History',
+    );
+  }
+
+  // 9. Frustum
+  Widget _buildFrustumHistorySection(FrustumHistoryItem item) {
+    List<Map<String, String>> inputRows = [
+      {
+        'label': 'Top Diameter =',
+        'value': "${item.topDiameter.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Bottom Diameter =',
+        'value': "${item.bottomDiameter.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Height =',
+        'value': "${item.height.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Filled Height =',
+        'value': "${item.filledHeight.toStringAsFixed(2)} ${item.unit}",
+      },
+    ];
+
+    List<Map<String, String>> resultRows = [
+      {'label': 'Total Volume =', 'value': item.totalVolume.toStringAsFixed(3)},
+      {
+        'label': 'Filled Volume =',
+        'value': item.filledVolume.toStringAsFixed(3),
+      },
+    ];
+
+    return _buildSection(
+      contentSections: [
+        {'heading': 'Inputs', 'data': inputRows},
+        {'heading': 'Result', 'data': resultRows},
+      ],
+      mainHeading: 'Frustum History',
+    );
+  }
+
+  Widget _buildVerticalCylinderHistorySection(
+    VerticalCylinderHistoryItem item,
+  ) {
+    // Input rows
+    List<Map<String, String>> inputRows = [
+      {
+        'label': 'Diameter =',
+        'value': "${item.diameter.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Height =',
+        'value': "${item.height.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Filled Height =',
+        'value': "${item.filled.toStringAsFixed(2)} ${item.unit}",
+      },
+    ];
+
+    // Result rows
+    List<Map<String, String>> resultRows = [
+      {'label': 'Total Volume =', 'value': item.totalVolume.toStringAsFixed(3)},
+      {
+        'label': 'Filled Volume =',
+        'value': item.filledVolume.toStringAsFixed(3),
+      },
+    ];
+
+    // Merge into sections
+    List<Map<String, dynamic>> data = [
+      {'heading': 'Inputs', 'data': inputRows},
+      {'heading': 'Result', 'data': resultRows},
+    ];
+
+    return _buildSection(
+      contentSections: data,
+      mainHeading: 'Vertical Cylinder History',
+    );
+  }
+
+  Widget _buildArchHistorySection(ArchHistoryItem item) {
+    // Input rows
+    List<Map<String, String>> inputRows = [
+      {
+        'label': 'Length =',
+        'value': "${item.length.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Height =',
+        'value': "${item.height.toStringAsFixed(2)} ${item.unit}",
+      },
+    ];
+
+    // Result rows
+    List<Map<String, String>> resultRows = [
+      {'label': 'Area =', 'value': item.area.toStringAsFixed(3)},
+      {'label': 'Perimeter =', 'value': item.perimeter.toStringAsFixed(3)},
+    ];
+
+    // Merge into sections
+    List<Map<String, dynamic>> data = [
+      {'heading': 'Inputs', 'data': inputRows},
+      {'heading': 'Result', 'data': resultRows},
+    ];
+
+    return _buildSection(contentSections: data, mainHeading: 'Arch History');
+  }
+
+  Widget _buildRectangleSlotHistorySection(RectangleWithSlotHistoryItem item) {
+    List<Map<String, String>> inputRows = [
+      {'label': 'A =', 'value': "${item.a.toStringAsFixed(2)} ${item.unit}"},
+      {'label': 'B =', 'value': "${item.b.toStringAsFixed(2)} ${item.unit}"},
+      {'label': 'C =', 'value': "${item.c.toStringAsFixed(2)} ${item.unit}"},
+      {'label': 'D =', 'value': "${item.d.toStringAsFixed(2)} ${item.unit}"},
+    ];
+
+    List<Map<String, String>> resultRows = [
+      {'label': 'Area =', 'value': item.area.toStringAsFixed(3)},
+      {'label': 'Perimeter =', 'value': item.perimeter.toStringAsFixed(3)},
+    ];
+
+    List<Map<String, dynamic>> data = [
+      {'heading': 'Inputs', 'data': inputRows},
+      {'heading': 'Result', 'data': resultRows},
+    ];
+
+    return _buildSection(
+      contentSections: data,
+      mainHeading: 'Rectangle with Slot History',
+    );
+  }
+
+  Widget _buildSectorHistorySection(SectorHistoryItem item) {
+    // Input rows
+    List<Map<String, String>> inputRows = [
+      {
+        'label': 'Radius =',
+        'value': "${item.radius.toStringAsFixed(2)} ${item.unit}",
+      },
+      {'label': 'Angle =', 'value': "${item.angle.toStringAsFixed(2)} °"},
+    ];
+
+    // Result rows
+    List<Map<String, String>> resultRows = [
+      {'label': 'Area =', 'value': item.area.toStringAsFixed(3)},
+    ];
+
+    // Merge into sections
+    List<Map<String, dynamic>> data = [
+      {'heading': 'Inputs', 'data': inputRows},
+      {'heading': 'Result', 'data': resultRows},
+    ];
+
+    return _buildSection(contentSections: data, mainHeading: 'Sector History');
+  }
+
+  Widget _buildHemisphereHistorySection(HemisphereHistoryItem item) {
+    List<Map<String, String>> inputRows = [
+      {
+        'label': 'Radius =',
+        'value': "${item.radius.toStringAsFixed(2)} ${item.unit}",
+      },
+    ];
+
+    List<Map<String, String>> resultRows = [
+      {'label': 'Surface Area =', 'value': item.surfaceArea.toStringAsFixed(3)},
+      {'label': 'Volume =', 'value': item.volume.toStringAsFixed(3)},
+    ];
+
+    List<Map<String, dynamic>> data = [
+      {'heading': 'Inputs', 'data': inputRows},
+      {'heading': 'Result', 'data': resultRows},
+    ];
+
+    return _buildSection(
+      contentSections: data,
+      mainHeading: 'Hemisphere History',
+    );
+  }
+
+  Widget _buildLShapeHistorySection(LShapeHistoryItem item) {
+    List<Map<String, String>> inputRows = [
+      {'label': 'L1 =', 'value': "${item.l1.toStringAsFixed(2)} ${item.unit}"},
+      {'label': 'W1 =', 'value': "${item.w1.toStringAsFixed(2)} ${item.unit}"},
+      {'label': 'L2 =', 'value': "${item.l2.toStringAsFixed(2)} ${item.unit}"},
+      {'label': 'W2 =', 'value': "${item.w2.toStringAsFixed(2)} ${item.unit}"},
+    ];
+
+    List<Map<String, String>> resultRows = [
+      {'label': 'Area =', 'value': item.area.toStringAsFixed(3)},
+      {'label': 'Perimeter =', 'value': item.perimeter.toStringAsFixed(3)},
+    ];
+
+    List<Map<String, dynamic>> data = [
+      {'heading': 'Inputs', 'data': inputRows},
+      {'heading': 'Result', 'data': resultRows},
+    ];
+
+    return _buildSection(contentSections: data, mainHeading: 'L-Shape History');
+  }
+
+  Widget _buildRectangleHistorySection(RectangleHistoryItem item) {
+    List<Map<String, String>> inputRows = [
+      {
+        'label': 'Length =',
+        'value': "${item.length.toStringAsFixed(2)} ${item.unit}",
+      },
+      {
+        'label': 'Width =',
+        'value': "${item.width.toStringAsFixed(2)} ${item.unit}",
+      },
+    ];
+
+    List<Map<String, String>> resultRows = [
+      {'label': 'Area =', 'value': item.area.toStringAsFixed(3)},
+      {'label': 'Perimeter =', 'value': item.perimeter.toStringAsFixed(3)},
+    ];
+
+    List<Map<String, dynamic>> data = [
+      {'heading': 'Inputs', 'data': inputRows},
+      {'heading': 'Result', 'data': resultRows},
+    ];
+
+    return _buildSection(
+      contentSections: data,
+      mainHeading: 'Rectangle History',
+    );
+  }
+
+  Widget _buildCircleHistorySection(CircleHistoryItem item) {
+    // ✅ Input rows
+    List<Map<String, String>> inputRows = [
+      {
+        'label': 'Input Value =',
+        'value': "${item.inputValue.toStringAsFixed(2)} ${item.inputUnit}",
+      },
+    ];
+
+    // ✅ Result rows
+    List<Map<String, String>> resultRows = [
+      {
+        'label': "${item.resultType} =",
+        'value': item.resultValue.toStringAsFixed(3),
+      },
+    ];
+
+    // ✅ Merge into sections
+    List<Map<String, dynamic>> circleData = [
+      {'heading': 'Inputs', 'data': inputRows},
+      {'heading': 'Result', 'data': resultRows},
+    ];
+
+    // ✅ Call your common section builder
+    return _buildSection(
+      contentSections: circleData,
+      mainHeading: 'Circle History',
     );
   }
 

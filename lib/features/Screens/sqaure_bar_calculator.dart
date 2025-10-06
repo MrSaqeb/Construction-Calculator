@@ -264,7 +264,7 @@ class _SqaureBarCalculatorState extends ConsumerState<SqaureBarCalculator> {
                 alignment: Alignment.centerRight,
                 child: Container(
                   height: 55,
-                  width: 150,
+                  width: 90,
                   decoration: BoxDecoration(
                     color: Colors.white30,
                     borderRadius: const BorderRadius.horizontal(
@@ -533,7 +533,7 @@ class _SqaureBarCalculatorState extends ConsumerState<SqaureBarCalculator> {
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 150,
+                    width: 110,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(
@@ -555,7 +555,7 @@ class _SqaureBarCalculatorState extends ConsumerState<SqaureBarCalculator> {
             const SizedBox(height: 8),
 
             _suffixInputWithDropdown(
-              labelText: "Length(L)", // Label
+              labelText: "Enter Length(L)", // Label
               controller: lengthController, // Input Field
               dropdownOptions: lengthUnitOptions, // Dropdown List
               selectedValue: selectedLengthUnit, // Dropdown Selected
@@ -565,7 +565,7 @@ class _SqaureBarCalculatorState extends ConsumerState<SqaureBarCalculator> {
 
             const SizedBox(height: 8),
             _suffixInputWithDropdown(
-              labelText: "Height(H)", // Label
+              labelText: "Enter Height(H)", // Label
               controller: heightController, // Input Field
               dropdownOptions: lengthUnitOptions, // Dropdown List
               selectedValue: selectedLengthUnit, // Dropdown Selected
@@ -574,7 +574,7 @@ class _SqaureBarCalculatorState extends ConsumerState<SqaureBarCalculator> {
             ),
             const SizedBox(height: 8),
             _suffixInputWithDropdown(
-              labelText: "Width(W)", // Label
+              labelText: "Enter Width(W)", // Label
               controller: widthWController, // Input Field
               dropdownOptions: lengthUnitOptions, // Dropdown List
               selectedValue: selectedLengthUnit, // Dropdown Selected
@@ -585,14 +585,14 @@ class _SqaureBarCalculatorState extends ConsumerState<SqaureBarCalculator> {
             const SizedBox(height: 8),
 
             _suffixInput(
-              textarea: "Quantity",
+              textarea: "Enter Quantity",
               controller: piecesController,
               unit: "Pcs",
             ),
             const SizedBox(height: 8),
 
             _suffixInputWithDropdown(
-              labelText: "Steel Cost",
+              labelText: "Enter Steel Cost",
               controller: costOfSteelController,
               dropdownOptions: weightUnitOptions,
               selectedValue: selectedWeightUnit,

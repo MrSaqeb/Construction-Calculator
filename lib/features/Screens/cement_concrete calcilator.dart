@@ -173,9 +173,8 @@ class _CementCalculatorScreenState
 
     if (Hive.isBoxOpen(HiveBoxes.cementHistory)) {
       ref.read(unifiedHistoryProvider.notifier).addCement(historyItem);
+    }
 
-    }  
-  
     ref.read(unifiedHistoryProvider.notifier).addCement(historyItem);
   }
 
@@ -525,7 +524,7 @@ class _CementCalculatorScreenState
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 150,
+                    width: 120,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(
@@ -570,7 +569,7 @@ class _CementCalculatorScreenState
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 150,
+                    width: 120,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(

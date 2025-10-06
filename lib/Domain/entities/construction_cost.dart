@@ -52,5 +52,6 @@ class ConstructionCost {
     return ConstructionCost(area: area, costPerSqFt: costPerSqFt);
   }
 
+  // ignore: strict_top_level_inference
   static fromStrings({String? areaText, String? costText}) {}
 }

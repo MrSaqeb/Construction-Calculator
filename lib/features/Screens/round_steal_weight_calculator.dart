@@ -226,7 +226,7 @@ class _RoundStealCalculatorState extends ConsumerState<RoundStealCalculator> {
                       fontFamily: 'Poppins',
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
-                      color: textColor,
+                      color: textColor.withOpacity(0.5),
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -261,7 +261,7 @@ class _RoundStealCalculatorState extends ConsumerState<RoundStealCalculator> {
                 alignment: Alignment.centerRight,
                 child: Container(
                   height: 55,
-                  width: 150,
+                  width: 90,
                   decoration: BoxDecoration(
                     color: Colors.white30,
                     borderRadius: const BorderRadius.horizontal(
@@ -310,7 +310,7 @@ class _RoundStealCalculatorState extends ConsumerState<RoundStealCalculator> {
                 fontFamily: 'Poppins',
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
-                color: textColor,
+                color: textColor.withOpacity(0.5),
               ),
             ),
           ],
@@ -532,7 +532,7 @@ class _RoundStealCalculatorState extends ConsumerState<RoundStealCalculator> {
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 150,
+                    width: 110,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(

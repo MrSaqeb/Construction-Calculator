@@ -398,9 +398,6 @@ class _WoodFrameCalculationScreenState
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 13),
-            const SizedBox(height: 6),
-
             Center(
               child: SvgPicture.asset(
                 'assets/icons/wood_frame_icon.svg',
@@ -438,7 +435,7 @@ class _WoodFrameCalculationScreenState
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 150,
+                    width: 100,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(

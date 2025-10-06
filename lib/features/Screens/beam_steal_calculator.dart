@@ -231,7 +231,7 @@ class _BeamStealCalculatorState extends ConsumerState<BeamStealCalculator> {
         children: [
           // Left side content with padding
           Padding(
-            padding: const EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.only(left: 15),
             child: Row(
               children: [
                 if (labelText != null) ...[
@@ -241,14 +241,14 @@ class _BeamStealCalculatorState extends ConsumerState<BeamStealCalculator> {
                       fontFamily: 'Poppins',
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
-                      color: textColor,
+                      color: textColor.withOpacity(0.5),
                     ),
                   ),
                   const SizedBox(width: 8),
                 ],
                 if (controller != null)
                   SizedBox(
-                    width: 80,
+                    width: 100,
                     child: TextField(
                       controller: controller,
                       keyboardType: type,
@@ -260,7 +260,7 @@ class _BeamStealCalculatorState extends ConsumerState<BeamStealCalculator> {
                       ),
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: '0',
+                        //  hintText: '10',
                         hintStyle: TextStyle(color: textColor.withOpacity(0.5)),
                       ),
                     ),
@@ -276,7 +276,7 @@ class _BeamStealCalculatorState extends ConsumerState<BeamStealCalculator> {
                 alignment: Alignment.centerRight,
                 child: Container(
                   height: 55,
-                  width: 150,
+                  width: 90,
                   decoration: BoxDecoration(
                     color: Colors.white30,
                     borderRadius: const BorderRadius.horizontal(
@@ -314,7 +314,7 @@ class _BeamStealCalculatorState extends ConsumerState<BeamStealCalculator> {
         borderRadius: BorderRadius.circular(50),
         border: Border.all(width: 0.4, color: Colors.black.withOpacity(0.2)),
       ),
-      padding: const EdgeInsets.only(left: 8),
+      padding: const EdgeInsets.only(left: 12),
       child: Row(
         children: [
           // Optional Start Text
@@ -325,7 +325,7 @@ class _BeamStealCalculatorState extends ConsumerState<BeamStealCalculator> {
                 fontFamily: 'Poppins',
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
-                color: textColor,
+                color: textColor.withOpacity(0.5),
               ),
             ),
           ],
@@ -339,12 +339,12 @@ class _BeamStealCalculatorState extends ConsumerState<BeamStealCalculator> {
               style: TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 14,
-                color: textColor,
+                color: textColor.withOpacity(0.5),
               ),
               decoration: InputDecoration(
                 border: InputBorder.none,
-                hintText: '0',
-                hintStyle: TextStyle(color: textColor.withOpacity(0.5)),
+                // // hintText: '10',
+                // hintStyle: TextStyle(color: textColor.withOpacity(0.5)),
               ),
             ),
           ),
@@ -533,7 +533,7 @@ class _BeamStealCalculatorState extends ConsumerState<BeamStealCalculator> {
               child: Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: const EdgeInsets.only(left: 10),
                     child: Text(
                       'Steal Type',
                       style: TextStyle(
@@ -548,7 +548,7 @@ class _BeamStealCalculatorState extends ConsumerState<BeamStealCalculator> {
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 150,
+                    width: 120,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(
@@ -570,7 +570,7 @@ class _BeamStealCalculatorState extends ConsumerState<BeamStealCalculator> {
             const SizedBox(height: 8),
 
             _suffixInputWithDropdown(
-              labelText: "Sizet(A)", // Label
+              labelText: "Enter Size (A)", // Label
               controller: sizeAController, // Input Field
               dropdownOptions: lengthUnitOptions, // Dropdown List
               selectedValue: selectedLengthUnit, // Dropdown Selected
@@ -582,7 +582,7 @@ class _BeamStealCalculatorState extends ConsumerState<BeamStealCalculator> {
             const SizedBox(height: 8),
 
             _suffixInputWithDropdown(
-              labelText: "Size(T)", // Label
+              labelText: "Enter Size (T)", // Label
               controller: sizeTController, // Input Field
               dropdownOptions: lengthUnitOptions, // Dropdown List
               selectedValue: selectedLengthUnit, // Dropdown Selected
@@ -593,7 +593,7 @@ class _BeamStealCalculatorState extends ConsumerState<BeamStealCalculator> {
             const SizedBox(height: 8),
 
             _suffixInputWithDropdown(
-              labelText: "Size(B)", // Label
+              labelText: "Enter Size (B)", // Label
               controller: sizeBController, // Input Field
               dropdownOptions: lengthUnitOptions, // Dropdown List
               selectedValue: selectedLengthUnit, // Dropdown Selected
@@ -604,7 +604,7 @@ class _BeamStealCalculatorState extends ConsumerState<BeamStealCalculator> {
             const SizedBox(height: 8),
 
             _suffixInputWithDropdown(
-              labelText: "Size (S)", // Label
+              labelText: "Enter Size (S)", // Label
               controller: sizeSController, // Input Field
               dropdownOptions: lengthUnitOptions, // Dropdown List
               selectedValue: selectedLengthUnit, // Dropdown Selected
@@ -615,7 +615,7 @@ class _BeamStealCalculatorState extends ConsumerState<BeamStealCalculator> {
             const SizedBox(height: 8),
 
             _suffixInputWithDropdown(
-              labelText: "Length", // Label
+              labelText: "Enter Length Value", // Label
               controller: lengthController, // Input Field
               dropdownOptions: lengthUnitOptions, // Dropdown List
               selectedValue: selectedLengthUnit, // Dropdown Selected
@@ -625,14 +625,14 @@ class _BeamStealCalculatorState extends ConsumerState<BeamStealCalculator> {
 
             const SizedBox(height: 8),
             _suffixInput(
-              textarea: "Quantity",
+              textarea: "Enter Beam Quantity",
               controller: piecesController,
               unit: "Pcs",
             ),
             const SizedBox(height: 8),
 
             _suffixInputWithDropdown(
-              labelText: "Steal Cost", // Label
+              labelText: "Enter Steal Cost", // Label
               controller: costOfSteelController, // Input Field
               dropdownOptions: weightUnitOptions, // Dropdown List
               selectedValue: selectedWeightUnit, // Dropdown Selected

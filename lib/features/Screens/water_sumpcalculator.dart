@@ -394,6 +394,7 @@ class _WaterSumpCalculatorScreenState
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w600,
             color: Colors.white,
+            fontSize: 17,
           ),
         ),
         actions: [
@@ -414,9 +415,6 @@ class _WaterSumpCalculatorScreenState
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 13),
-            const SizedBox(height: 6),
-
             Center(
               child: SvgPicture.asset(
                 'assets/icons/water_sump_icon.svg',
@@ -454,7 +452,7 @@ class _WaterSumpCalculatorScreenState
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 150,
+                    width: 110,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(

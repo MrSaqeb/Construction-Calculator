@@ -6,17 +6,31 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() async {
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+
+//   await HiveSetup.init(); // ✅ Hive centralized setup
+
+//   runApp(const ProviderScope(child: MyApp()));
+//   final bool isDebug = false;
+//   runApp(
+//     DevicePreview(
+//       enabled: isDebug, // iOS preview enable
+//       builder: (context) => const ProviderScope(child: MyApp()),
+//     ),
+//   );
+// }
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  await HiveSetup.init(); // ✅ Hive centralized setup
-
-  runApp(const ProviderScope(child: MyApp()));
+  await HiveSetup.init();
   final bool isDebug = false;
   runApp(
-    DevicePreview(
-      enabled: isDebug, // iOS preview enable
-      builder: (context) => const ProviderScope(child: MyApp()),
+    ProviderScope(
+      child: DevicePreview(
+        enabled: isDebug, // On in debug, off in release/profile
+        builder: (context) => const MyApp(),
+      ),
     ),
   );
 }

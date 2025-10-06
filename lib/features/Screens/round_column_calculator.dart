@@ -523,7 +523,7 @@ class _ColumnCalculatorScreenState
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 150,
+                    width: 115,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(
@@ -568,7 +568,7 @@ class _ColumnCalculatorScreenState
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 150,
+                    width: 115,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(

@@ -211,7 +211,7 @@ class _PlywoodSheetScreenState extends ConsumerState<PlywoodSheetScreen> {
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 180,
+                    width: 110,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(

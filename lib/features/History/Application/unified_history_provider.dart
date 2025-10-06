@@ -1,24 +1,38 @@
+import 'package:construction_calculator/Domain/entities/Lshape_history_item.dart';
 import 'package:construction_calculator/Domain/entities/air_history_item.dart';
 import 'package:construction_calculator/Domain/entities/angle_history_item.dart';
 import 'package:construction_calculator/Domain/entities/anti_termite_history_item.dart';
+import 'package:construction_calculator/Domain/entities/arch_history_item.dart';
 import 'package:construction_calculator/Domain/entities/beam_steal_history_item.dart';
 import 'package:construction_calculator/Domain/entities/boundary_wall_history_item.dart';
+import 'package:construction_calculator/Domain/entities/circle_history_item.dart';
 import 'package:construction_calculator/Domain/entities/civilunitconversion_history_item.dart';
 import 'package:construction_calculator/Domain/entities/concrete_tube_history_item.dart';
 import 'package:construction_calculator/Domain/entities/concreteblock_history_item.dart';
+import 'package:construction_calculator/Domain/entities/cone_bottom_history_item.dart';
+import 'package:construction_calculator/Domain/entities/cone_top_history_item.dart';
 import 'package:construction_calculator/Domain/entities/distance_history_item.dart';
 import 'package:construction_calculator/Domain/entities/excavation_history_item.dart';
 import 'package:construction_calculator/Domain/entities/flooring_history_item.dart';
 import 'package:construction_calculator/Domain/entities/frequency_history_item.dart';
+import 'package:construction_calculator/Domain/entities/frustum_history_item.dart';
 import 'package:construction_calculator/Domain/entities/fuel_history_item.dart';
+import 'package:construction_calculator/Domain/entities/hemisphere_history_item.dart';
+import 'package:construction_calculator/Domain/entities/horizontal_capsule_item.dart';
+import 'package:construction_calculator/Domain/entities/horizontal_cylinder_item.dart';
+import 'package:construction_calculator/Domain/entities/horizontal_elliptical_item.dart';
 import 'package:construction_calculator/Domain/entities/kitchen_history_item.dart';
 import 'package:construction_calculator/Domain/entities/mass_history_item.dart';
 import 'package:construction_calculator/Domain/entities/paint_history_item.dart';
 import 'package:construction_calculator/Domain/entities/plywood_sheet_history_item.dart';
 import 'package:construction_calculator/Domain/entities/pressure_history_item.dart';
+import 'package:construction_calculator/Domain/entities/rectangle_history_item.dart';
+import 'package:construction_calculator/Domain/entities/rectangleslot_history_item.dart';
+import 'package:construction_calculator/Domain/entities/rectangular_prism_item.dart';
 import 'package:construction_calculator/Domain/entities/roof_pitch_history_item.dart';
 import 'package:construction_calculator/Domain/entities/round_column_history_item.dart';
 import 'package:construction_calculator/Domain/entities/round_steal_history_item.dart';
+import 'package:construction_calculator/Domain/entities/sector_history_item.dart';
 import 'package:construction_calculator/Domain/entities/solar_roofttop_history_item.dart';
 import 'package:construction_calculator/Domain/entities/solor_waterheater_history_item.dart';
 import 'package:construction_calculator/Domain/entities/speed_history_item.dart';
@@ -28,6 +42,9 @@ import 'package:construction_calculator/Domain/entities/steal_we_history_item.da
 import 'package:construction_calculator/Domain/entities/steal_weight_history_item.dart';
 import 'package:construction_calculator/Domain/entities/time_history_item.dart';
 import 'package:construction_calculator/Domain/entities/topsoil_history_item.dart';
+import 'package:construction_calculator/Domain/entities/vertical_capsule_item.dart';
+import 'package:construction_calculator/Domain/entities/vertical_cylinder_item.dart';
+import 'package:construction_calculator/Domain/entities/vertical_elliptical_item.dart';
 import 'package:construction_calculator/Domain/entities/water_sump_history_item.dart';
 import 'package:construction_calculator/Domain/entities/wood_frame_history_item.dart';
 import 'package:flutter/foundation.dart';
@@ -91,9 +108,68 @@ class UnifiedHistoryNotifier extends StateNotifier<List<HistoryItem>> {
   final Box<PressureHistoryItem> pressureBox;
   final Box<MassHistoryItem> massBox;
   final Box<TimeHistoryItem> timeBox;
+  final Box<CircleHistoryItem> circleBox;
+  // Rectangle
+  final Box<RectangleHistoryItem> rectangleBox;
+  // L-Shape
+  final Box<LShapeHistoryItem> lShapeBox;
+  // Hemisphere
+  final Box<HemisphereHistoryItem> hemisphereBox;
+  // Sector
+  final Box<SectorHistoryItem> sectorBox;
+  // Arch
+  final Box<ArchHistoryItem> archBox;
+  // Rectangle with Slot
+  final Box<RectangleWithSlotHistoryItem> rectangleSlotBox;
+  final Box<VerticalCylinderHistoryItem> verticalBox;
+
+  // 2. Horizontal Cylinder
+  final Box<HorizontalCylinderItem> horizontalCylinderBox;
+
+  // 3. Rectangular Prism
+  final Box<RectangularPrismItem> rectangularPrismBox;
+
+  // 4. Vertical Capsule
+  final Box<VerticalCapsuleItem> verticalCapsuleBox;
+
+  // 5. Horizontal Capsule
+  final Box<HorizontalCapsuleItem> horizontalCapsuleBox;
+
+  // 6. Vertical Elliptical
+  final Box<VerticalEllipticalItem> verticalEllipticalBox;
+
+  // 7. Horizontal Elliptical
+  final Box<HorizontalEllipticalHistoryItem> horizontalEllipticalBox;
+
+  // 8. Cone Bottom
+  final Box<ConeBottomHistoryItem> coneBottomBox;
+
+  // 9. Cone Top
+  final Box<ConeTopHistoryItem> coneTopBox;
+
+  // 10. Frustum
+  final Box<FrustumHistoryItem> frustumBox;
+
   final int maxHistoryItems;
 
   UnifiedHistoryNotifier({
+    required this.horizontalCylinderBox,
+    required this.rectangularPrismBox,
+    required this.verticalCapsuleBox,
+    required this.verticalEllipticalBox,
+    required this.horizontalEllipticalBox,
+    required this.coneBottomBox,
+    required this.coneTopBox,
+    required this.frustumBox,
+    required this.horizontalCapsuleBox,
+    required this.verticalBox,
+    required this.archBox,
+    required this.hemisphereBox,
+    required this.sectorBox,
+    required this.lShapeBox,
+    required this.rectangleSlotBox,
+    required this.rectangleBox,
+    required this.circleBox,
     required this.angleBox,
     required this.frequencyBox,
     required this.fuelBox,
@@ -454,7 +530,582 @@ class UnifiedHistoryNotifier extends StateNotifier<List<HistoryItem>> {
       );
     }
 
+    for (var item in circleBox.values) {
+      allItems.add(
+        HistoryItem(
+          type: "circle_history",
+          data: item,
+          timestamp: DateTime.now(),
+        ),
+      );
+    }
+
+    // Circle
+    for (var item in circleBox.values) {
+      allItems.add(
+        HistoryItem(
+          type: "circle_history",
+          data: item,
+          timestamp: DateTime.now(),
+        ),
+      );
+    }
+
+    // Rectangle
+    for (var item in rectangleBox.values) {
+      allItems.add(
+        HistoryItem(
+          type: "rectangle_history",
+          data: item,
+          timestamp: DateTime.now(),
+        ),
+      );
+    }
+
+    // L-Shape
+    for (var item in lShapeBox.values) {
+      allItems.add(
+        HistoryItem(
+          type: "lshape_history",
+          data: item,
+          timestamp: DateTime.now(),
+        ),
+      );
+    }
+
+    // Hemisphere
+    for (var item in hemisphereBox.values) {
+      allItems.add(
+        HistoryItem(
+          type: "hemisphere_history",
+          data: item,
+          timestamp: DateTime.now(),
+        ),
+      );
+    }
+
+    // Sector
+    for (var item in sectorBox.values) {
+      allItems.add(
+        HistoryItem(
+          type: "sector_history",
+          data: item,
+          timestamp: DateTime.now(),
+        ),
+      );
+    }
+
+    // Arch
+    for (var item in archBox.values) {
+      allItems.add(
+        HistoryItem(
+          type: "arch_history",
+          data: item,
+          timestamp: DateTime.now(),
+        ),
+      );
+    }
+
+    // Rectangle with Slot
+    for (var item in rectangleSlotBox.values) {
+      allItems.add(
+        HistoryItem(
+          type: "rectangle_slot_history",
+          data: item,
+          timestamp: DateTime.now(),
+        ),
+      );
+    }
+
+    for (var item in verticalBox.values) {
+      allItems.add(
+        HistoryItem(
+          type: "vertical_cylinder_history",
+          data: item,
+          timestamp: DateTime.now(),
+        ),
+      );
+    }
+
+    for (var item in verticalBox.values) {
+      allItems.add(
+        HistoryItem(
+          type: "vertical_cylinder_history",
+          data: item,
+          timestamp: DateTime.now(),
+        ),
+      );
+    }
+
+    for (var item in horizontalCylinderBox.values) {
+      allItems.add(
+        HistoryItem(
+          type: "horizontal_cylinder_history",
+          data: item,
+          timestamp: DateTime.now(),
+        ),
+      );
+    }
+
+    for (var item in rectangularPrismBox.values) {
+      allItems.add(
+        HistoryItem(
+          type: "rectangular_prism_history",
+          data: item,
+          timestamp: DateTime.now(),
+        ),
+      );
+    }
+
+    for (var item in verticalCapsuleBox.values) {
+      allItems.add(
+        HistoryItem(
+          type: "vertical_capsule_history",
+          data: item,
+          timestamp: DateTime.now(),
+        ),
+      );
+    }
+
+    for (var item in horizontalCapsuleBox.values) {
+      allItems.add(
+        HistoryItem(
+          type: "horizontal_capsule_history",
+          data: item,
+          timestamp: DateTime.now(),
+        ),
+      );
+    }
+
+    for (var item in verticalEllipticalBox.values) {
+      allItems.add(
+        HistoryItem(
+          type: "vertical_elliptical_history",
+          data: item,
+          timestamp: DateTime.now(),
+        ),
+      );
+    }
+
+    for (var item in horizontalEllipticalBox.values) {
+      allItems.add(
+        HistoryItem(
+          type: "horizontal_elliptical_history",
+          data: item,
+          timestamp: DateTime.now(),
+        ),
+      );
+    }
+
+    for (var item in coneBottomBox.values) {
+      allItems.add(
+        HistoryItem(
+          type: "cone_bottom_history",
+          data: item,
+          timestamp: DateTime.now(),
+        ),
+      );
+    }
+
+    for (var item in coneTopBox.values) {
+      allItems.add(
+        HistoryItem(
+          type: "cone_top_history",
+          data: item,
+          timestamp: DateTime.now(),
+        ),
+      );
+    }
+
+    for (var item in frustumBox.values) {
+      allItems.add(
+        HistoryItem(
+          type: "frustum_history",
+          data: item,
+          timestamp: DateTime.now(),
+        ),
+      );
+    }
+
     state = allItems;
+  }
+
+  void addConeHistory(ConeTopHistoryItem item) {
+    final newHistoryItem = HistoryItem(
+      type: 'cone_top_history',
+      data: item,
+      timestamp: DateTime.now(),
+    );
+
+    final exists = state.any((h) {
+      if (h.type != newHistoryItem.type) return false;
+      final existing = h.data as ConeTopHistoryItem;
+
+      return existing.topDiameter == item.topDiameter &&
+          existing.bottomDiameter == item.bottomDiameter &&
+          existing.cylinderHeight == item.cylinderHeight &&
+          existing.coneHeight == item.coneHeight &&
+          existing.filledHeight == item.filledHeight &&
+          existing.unit == item.unit &&
+          existing.totalVolume == item.totalVolume &&
+          existing.filledVolume == item.filledVolume;
+    });
+
+    if (!exists) {
+      state = [...state, newHistoryItem];
+    }
+  }
+
+  void addHorizontalElliptical(HorizontalEllipticalHistoryItem item) {
+    final newHistoryItem = HistoryItem(
+      type: 'horizontal_elliptical_history',
+      data: item,
+      timestamp: DateTime.now(),
+    );
+
+    final exists = state.any((h) {
+      if (h.type != 'horizontal_elliptical_history') return false;
+      final existing = h.data as HorizontalEllipticalHistoryItem;
+
+      return existing.length == item.length &&
+          existing.width == item.width &&
+          existing.height == item.height &&
+          existing.filled == item.filled &&
+          existing.unit == item.unit &&
+          existing.totalVolume == item.totalVolume &&
+          existing.filledVolume == item.filledVolume;
+    });
+
+    if (!exists) {
+      state = [...state, newHistoryItem];
+    }
+  }
+
+  void addHorizontalCylinder(HorizontalCylinderItem item) {
+    final newHistoryItem = HistoryItem(
+      type: 'horizontal_cylinder_history',
+      data: item,
+      timestamp: DateTime.now(),
+    );
+
+    final exists = state.any((h) {
+      if (h.type != 'horizontal_cylinder_history') return false;
+      final existing = h.data as HorizontalCylinderItem;
+
+      return existing.diameter == item.diameter &&
+          existing.length == item.length &&
+          existing.filledHeight == item.filledHeight &&
+          existing.unit == item.unit &&
+          existing.totalVolume == item.totalVolume &&
+          existing.filledVolume == item.filledVolume;
+    });
+
+    if (!exists) {
+      state = [...state, newHistoryItem];
+    }
+  }
+
+  void addHorizontalCapsule(HorizontalCapsuleItem item) {
+    final newHistoryItem = HistoryItem(
+      type: 'horizontal_capsule_history',
+      data: item,
+      timestamp: DateTime.now(),
+    );
+
+    final exists = state.any((h) {
+      if (h.type != 'horizontal_capsule_history') return false;
+      final existing = h.data as HorizontalCapsuleItem;
+
+      return existing.diameter == item.diameter &&
+          existing.cylinderLength == item.cylinderLength &&
+          existing.filledLength == item.filledLength &&
+          existing.unit == item.unit &&
+          existing.totalVolume == item.totalVolume &&
+          existing.filledVolume == item.filledVolume;
+    });
+
+    if (!exists) {
+      state = [...state, newHistoryItem];
+    }
+  }
+
+  void addFrustum(FrustumHistoryItem item) {
+    final newHistoryItem = HistoryItem(
+      type: 'frustum_history',
+      data: item,
+      timestamp: DateTime.now(),
+    );
+
+    final exists = state.any((h) {
+      if (h.type != 'frustum_history') return false;
+      final existing = h.data as FrustumHistoryItem;
+
+      return existing.topDiameter == item.topDiameter &&
+          existing.bottomDiameter == item.bottomDiameter &&
+          existing.height == item.height &&
+          existing.filledHeight == item.filledHeight &&
+          existing.unit == item.unit &&
+          existing.totalVolume == item.totalVolume &&
+          existing.filledVolume == item.filledVolume;
+    });
+
+    if (!exists) {
+      state = [...state, newHistoryItem];
+    }
+  }
+
+  void addVerticalCapsule(VerticalCapsuleItem item) {
+    final newHistoryItem = HistoryItem(
+      type: 'vertical_capsule_history',
+      data: item,
+      timestamp: DateTime.now(),
+    );
+
+    final exists = state.any((h) {
+      if (h.type != 'vertical_capsule_history') return false;
+      final existing = h.data as VerticalCapsuleItem;
+
+      return existing.diameter == item.diameter &&
+          existing.cylinderHeight == item.cylinderHeight &&
+          existing.filledHeight == item.filledHeight &&
+          existing.unit == item.unit &&
+          existing.totalVolume == item.totalVolume &&
+          existing.filledVolume == item.filledVolume;
+    });
+
+    if (!exists) {
+      state = [...state, newHistoryItem];
+    }
+  }
+
+  void addConeBottom(ConeBottomHistoryItem item) {
+    final newHistoryItem = HistoryItem(
+      type: 'cone_bottom_history',
+      data: item,
+      timestamp: DateTime.now(),
+    );
+
+    final exists = state.any((h) {
+      if (h.type != 'cone_bottom_history') return false;
+      final existing = h.data as ConeBottomHistoryItem;
+
+      return existing.topDiameter == item.topDiameter &&
+          existing.bottomDiameter == item.bottomDiameter &&
+          existing.cylinderHeight == item.cylinderHeight &&
+          existing.coneHeight == item.coneHeight &&
+          existing.filledHeight == item.filledHeight &&
+          existing.unit == item.unit &&
+          existing.totalVolume == item.totalVolume &&
+          existing.filledVolume == item.filledVolume;
+    });
+
+    if (!exists) {
+      state = [...state, newHistoryItem];
+    }
+  }
+
+  void addRectangularPrism(RectangularPrismItem item) {
+    final newHistoryItem = HistoryItem(
+      type: 'rectangular_prism_history',
+      data: item,
+      timestamp: DateTime.now(),
+    );
+
+    final exists = state.any((h) {
+      if (h.type != 'rectangular_prism_history') return false;
+      final existing = h.data as RectangularPrismItem;
+      return existing.length == item.length &&
+          existing.width == item.width &&
+          existing.height == item.height &&
+          existing.unit == item.unit &&
+          existing.totalVolume == item.totalVolume &&
+          existing.filledVolume == item.filledVolume;
+    });
+
+    if (!exists) state = [...state, newHistoryItem];
+  }
+
+  void addVerticalElliptical(VerticalEllipticalItem item) {
+    final newHistoryItem = HistoryItem(
+      type: 'vertical_elliptical_history',
+      data: item,
+      timestamp: DateTime.now(),
+    );
+
+    final exists = state.any((h) {
+      if (h.type != 'vertical_elliptical_history') return false;
+      final existing = h.data as VerticalEllipticalItem;
+
+      return existing.length == item.length &&
+          existing.width == item.width &&
+          existing.height == item.height &&
+          existing.filledHeight == item.filledHeight &&
+          existing.unit == item.unit &&
+          existing.totalVolume == item.totalVolume &&
+          existing.filledVolume == item.filledVolume;
+    });
+
+    if (!exists) {
+      state = [...state, newHistoryItem];
+    }
+  }
+
+  void addVerticalCylinder(VerticalCylinderHistoryItem item) {
+    final newHistoryItem = HistoryItem(
+      type: 'vertical_cylinder_history',
+      data: item,
+      timestamp: DateTime.now(),
+    );
+
+    final exists = state.any((h) {
+      if (h.type != 'vertical_cylinder_history') return false;
+      final existing = h.data as VerticalCylinderHistoryItem;
+
+      return existing.diameter == item.diameter &&
+          existing.height == item.height &&
+          existing.filled == item.filled &&
+          existing.unit == item.unit &&
+          existing.totalVolume == item.totalVolume &&
+          existing.filledVolume == item.filledVolume;
+    });
+
+    if (!exists) {
+      state = [...state, newHistoryItem];
+    }
+  }
+
+  void addRectangleSlot(RectangleWithSlotHistoryItem item) {
+    final newHistoryItem = HistoryItem(
+      type: 'rectangle_slot_history',
+      data: item,
+      timestamp: DateTime.now(),
+    );
+
+    final exists = state.any((h) {
+      if (h.type != 'rectangle_slot_history') return false;
+      final existing = h.data as RectangleWithSlotHistoryItem;
+      return existing.a == item.a &&
+          existing.b == item.b &&
+          existing.c == item.c &&
+          existing.d == item.d &&
+          existing.unit == item.unit &&
+          existing.area == item.area &&
+          existing.perimeter == item.perimeter;
+    });
+
+    if (!exists) {
+      state = [...state, newHistoryItem];
+    }
+  }
+
+  void addLShape(LShapeHistoryItem item) {
+    final newHistoryItem = HistoryItem(
+      type: 'lshape_history',
+      data: item,
+      timestamp: DateTime.now(),
+    );
+
+    final exists = state.any((h) {
+      if (h.type != 'lshape_history') return false;
+      final existing = h.data as LShapeHistoryItem;
+      return existing.l1 == item.l1 &&
+          existing.w1 == item.w1 &&
+          existing.l2 == item.l2 &&
+          existing.w2 == item.w2 &&
+          existing.unit == item.unit &&
+          existing.area == item.area &&
+          existing.perimeter == item.perimeter;
+    });
+
+    if (!exists) {
+      state = [...state, newHistoryItem];
+    }
+  }
+
+  void addArch(ArchHistoryItem item) {
+    final newHistoryItem = HistoryItem(
+      type: 'arch_history',
+      data: item,
+      timestamp: DateTime.now(),
+    );
+
+    final exists = state.any((h) {
+      if (h.type != 'arch_history') return false;
+      final existing = h.data as ArchHistoryItem;
+      return existing.length == item.length &&
+          existing.height == item.height &&
+          existing.unit == item.unit &&
+          existing.area == item.area &&
+          existing.perimeter == item.perimeter;
+    });
+
+    if (!exists) {
+      state = [...state, newHistoryItem];
+    }
+  }
+
+  void addSector(SectorHistoryItem item) {
+    final newHistoryItem = HistoryItem(
+      type: 'sector_history',
+      data: item,
+      timestamp: DateTime.now(),
+    );
+
+    final exists = state.any((h) {
+      if (h.type != 'sector_history') return false;
+      final existing = h.data as SectorHistoryItem;
+      return existing.radius == item.radius &&
+          existing.angle == item.angle &&
+          existing.unit == item.unit &&
+          existing.area == item.area;
+    });
+
+    if (!exists) {
+      state = [...state, newHistoryItem];
+    }
+  }
+
+  void addHemisphere(HemisphereHistoryItem item) {
+    final newHistoryItem = HistoryItem(
+      type: 'hemisphere_history',
+      data: item,
+      timestamp: DateTime.now(),
+    );
+
+    final exists = state.any((h) {
+      if (h.type != 'hemisphere_history') return false;
+      final existing = h.data as HemisphereHistoryItem;
+      return existing.radius == item.radius &&
+          existing.unit == item.unit &&
+          existing.surfaceArea == item.surfaceArea &&
+          existing.volume == item.volume;
+    });
+
+    if (!exists) {
+      state = [...state, newHistoryItem];
+    }
+  }
+
+  void addRectangle(RectangleHistoryItem item) {
+    final newHistoryItem = HistoryItem(
+      type: 'rectangle_history',
+      data: item,
+      timestamp: DateTime.now(),
+    );
+
+    final exists = state.any((h) {
+      if (h.type != 'rectangle_history') return false;
+      final existing = h.data as RectangleHistoryItem;
+      return existing.length == item.length &&
+          existing.width == item.width &&
+          existing.unit == item.unit &&
+          existing.area == item.area &&
+          existing.perimeter == item.perimeter;
+    });
+
+    if (!exists) {
+      state = [...state, newHistoryItem];
+    }
   }
 
   void addAngle(AngleHistoryItem item) {
@@ -570,6 +1221,27 @@ class UnifiedHistoryNotifier extends StateNotifier<List<HistoryItem>> {
       return existing.inputValue == item.inputValue &&
           existing.inputUnit == item.inputUnit &&
           mapEquals(existing.convertedValues, item.convertedValues);
+    });
+
+    if (!exists) {
+      state = [...state, newHistoryItem];
+    }
+  }
+
+  void addCircle(CircleHistoryItem item) {
+    final newHistoryItem = HistoryItem(
+      type: 'circle_history',
+      data: item,
+      timestamp: DateTime.now(),
+    );
+
+    final exists = state.any((h) {
+      if (h.type != 'circle_history') return false;
+      final existing = h.data as CircleHistoryItem;
+      return existing.inputValue == item.inputValue &&
+          existing.inputUnit == item.inputUnit &&
+          existing.resultType == item.resultType &&
+          existing.resultValue == item.resultValue;
     });
 
     if (!exists) {
@@ -1621,6 +2293,108 @@ class UnifiedHistoryNotifier extends StateNotifier<List<HistoryItem>> {
         orElse: () => -1,
       );
       if (key != -1) angleBox.delete(key);
+    } else if (item.type == "circle_history") {
+      key = circleBox.keys.firstWhere(
+        (k) => circleBox.get(k) == item.data,
+        orElse: () => -1,
+      );
+      if (key != -1) circleBox.delete(key);
+    } else if (item.type == "rectangle_history") {
+      key = rectangleBox.keys.firstWhere(
+        (k) => rectangleBox.get(k) == item.data,
+        orElse: () => -1,
+      );
+      if (key != -1) rectangleBox.delete(key);
+    } else if (item.type == "lshape_history") {
+      key = lShapeBox.keys.firstWhere(
+        (k) => lShapeBox.get(k) == item.data,
+        orElse: () => -1,
+      );
+      if (key != -1) lShapeBox.delete(key);
+    } else if (item.type == "hemisphere_history") {
+      key = hemisphereBox.keys.firstWhere(
+        (k) => hemisphereBox.get(k) == item.data,
+        orElse: () => -1,
+      );
+      if (key != -1) hemisphereBox.delete(key);
+    } else if (item.type == "sector_history") {
+      key = sectorBox.keys.firstWhere(
+        (k) => sectorBox.get(k) == item.data,
+        orElse: () => -1,
+      );
+      if (key != -1) sectorBox.delete(key);
+    } else if (item.type == "arch_history") {
+      key = archBox.keys.firstWhere(
+        (k) => archBox.get(k) == item.data,
+        orElse: () => -1,
+      );
+      if (key != -1) archBox.delete(key);
+    } else if (item.type == "rectangle_slot_history") {
+      key = rectangleSlotBox.keys.firstWhere(
+        (k) => rectangleSlotBox.get(k) == item.data,
+        orElse: () => -1,
+      );
+      if (key != -1) rectangleSlotBox.delete(key);
+    } else if (item.type == "vertical_cylinder_history") {
+      key = verticalBox.keys.firstWhere(
+        (k) => verticalBox.get(k) == item.data,
+        orElse: () => -1,
+      );
+      if (key != -1) verticalBox.delete(key);
+    } else if (item.type == "horizontal_cylinder_history") {
+      key = horizontalCylinderBox.keys.firstWhere(
+        (k) => horizontalCylinderBox.get(k) == item.data,
+        orElse: () => -1,
+      );
+      if (key != -1) horizontalCylinderBox.delete(key);
+    } else if (item.type == "rectangular_prism_history") {
+      key = rectangularPrismBox.keys.firstWhere(
+        (k) => rectangularPrismBox.get(k) == item.data,
+        orElse: () => -1,
+      );
+      if (key != -1) rectangularPrismBox.delete(key);
+    } else if (item.type == "vertical_capsule_history") {
+      key = verticalCapsuleBox.keys.firstWhere(
+        (k) => verticalCapsuleBox.get(k) == item.data,
+        orElse: () => -1,
+      );
+      if (key != -1) verticalCapsuleBox.delete(key);
+    } else if (item.type == "horizontal_capsule_history") {
+      key = horizontalCapsuleBox.keys.firstWhere(
+        (k) => horizontalCapsuleBox.get(k) == item.data,
+        orElse: () => -1,
+      );
+      if (key != -1) horizontalCapsuleBox.delete(key);
+    } else if (item.type == "vertical_elliptical_history") {
+      key = verticalEllipticalBox.keys.firstWhere(
+        (k) => verticalEllipticalBox.get(k) == item.data,
+        orElse: () => -1,
+      );
+      if (key != -1) verticalEllipticalBox.delete(key);
+    } else if (item.type == "horizontal_elliptical_history") {
+      key = horizontalEllipticalBox.keys.firstWhere(
+        (k) => horizontalEllipticalBox.get(k) == item.data,
+        orElse: () => -1,
+      );
+      if (key != -1) horizontalEllipticalBox.delete(key);
+    } else if (item.type == "cone_bottom_history") {
+      key = coneBottomBox.keys.firstWhere(
+        (k) => coneBottomBox.get(k) == item.data,
+        orElse: () => -1,
+      );
+      if (key != -1) coneBottomBox.delete(key);
+    } else if (item.type == "cone_top_history") {
+      key = coneTopBox.keys.firstWhere(
+        (k) => coneTopBox.get(k) == item.data,
+        orElse: () => -1,
+      );
+      if (key != -1) coneTopBox.delete(key);
+    } else if (item.type == "frustum_history") {
+      key = frustumBox.keys.firstWhere(
+        (k) => frustumBox.get(k) == item.data,
+        orElse: () => -1,
+      );
+      if (key != -1) frustumBox.delete(key);
     }
 
     state = state.where((e) => e != item).toList();
@@ -1628,6 +2402,23 @@ class UnifiedHistoryNotifier extends StateNotifier<List<HistoryItem>> {
 
   /// Clear all history
   void clearAll() {
+    horizontalCapsuleBox.clear();
+    coneTopBox.clear();
+    frustumBox.clear();
+    coneBottomBox.clear();
+    verticalEllipticalBox.clear();
+    horizontalEllipticalBox.clear();
+    verticalCapsuleBox.clear();
+    rectangularPrismBox.clear();
+    horizontalCylinderBox.clear();
+    verticalBox.clear();
+    hemisphereBox.clear();
+    rectangleSlotBox.clear();
+    archBox.clear();
+    sectorBox.clear();
+    lShapeBox.clear();
+    rectangleBox.clear();
+    circleBox.clear();
     pressureBox.clear();
     angleBox.clear();
     frequencyBox.clear();
@@ -1672,6 +2463,11 @@ class UnifiedHistoryNotifier extends StateNotifier<List<HistoryItem>> {
 /// Provider
 final unifiedHistoryProvider =
     StateNotifierProvider<UnifiedHistoryNotifier, List<HistoryItem>>((ref) {
+      final verticalBox = Hive.box<VerticalCylinderHistoryItem>(
+        HiveBoxes.verticalHistory,
+      );
+
+      final circleBox = Hive.box<CircleHistoryItem>(HiveBoxes.circleHistory);
       final brickBox = Hive.box<BrickHistoryItem>(HiveBoxes.brickHistory);
       final constructionBox = Hive.box<ConstructionCostHistoryItem>(
         HiveBoxes.constructionCostHistory,
@@ -1764,7 +2560,75 @@ final unifiedHistoryProvider =
         HiveBoxes.pressureHistory,
       );
 
+      final rectangleBox = Hive.box<RectangleHistoryItem>(
+        HiveBoxes.rectangleHistory,
+      );
+
+      final lShapeBox = Hive.box<LShapeHistoryItem>(HiveBoxes.lShapeHistory);
+
+      final hemisphereBox = Hive.box<HemisphereHistoryItem>(
+        HiveBoxes.hemisphereHistory,
+      );
+
+      final sectorBox = Hive.box<SectorHistoryItem>(HiveBoxes.sectorHistory);
+
+      final archBox = Hive.box<ArchHistoryItem>(HiveBoxes.archHistory);
+
+      final rectangleSlotBox = Hive.box<RectangleWithSlotHistoryItem>(
+        HiveBoxes.rectangleWithSlotHistory,
+      );
+
+      final horizontalCylinderBox = Hive.box<HorizontalCylinderItem>(
+        HiveBoxes.horizontalCylinderHistory,
+      );
+
+      final rectangularPrismBox = Hive.box<RectangularPrismItem>(
+        HiveBoxes.rectangularPrismHistory,
+      );
+
+      final verticalCapsuleBox = Hive.box<VerticalCapsuleItem>(
+        HiveBoxes.verticalCapsuleHistory,
+      );
+
+      final horizontalCapsuleBox = Hive.box<HorizontalCapsuleItem>(
+        HiveBoxes.horizontalCapsuleHistory,
+      );
+
+      final verticalEllipticalBox = Hive.box<VerticalEllipticalItem>(
+        HiveBoxes.verticalEllipticalHistory,
+      );
+
+      final horizontalEllipticalBox = Hive.box<HorizontalEllipticalHistoryItem>(
+        HiveBoxes.horizontalEllipticalHistory,
+      );
+
+      final coneBottomBox = Hive.box<ConeBottomHistoryItem>(
+        HiveBoxes.coneBottomHistory,
+      );
+
+      final coneTopBox = Hive.box<ConeTopHistoryItem>(HiveBoxes.coneTopHistory);
+
+      final frustumBox = Hive.box<FrustumHistoryItem>(HiveBoxes.frustumHistory);
+
       return UnifiedHistoryNotifier(
+        rectangularPrismBox: rectangularPrismBox,
+        horizontalEllipticalBox: horizontalEllipticalBox,
+        verticalEllipticalBox: verticalEllipticalBox,
+        verticalCapsuleBox: verticalCapsuleBox,
+        horizontalCylinderBox: horizontalCylinderBox,
+        horizontalCapsuleBox: horizontalCapsuleBox,
+        coneTopBox: coneTopBox,
+        coneBottomBox: coneBottomBox,
+        frustumBox: frustumBox,
+        verticalBox: verticalBox,
+        rectangleBox: rectangleBox,
+        lShapeBox: lShapeBox,
+        hemisphereBox: hemisphereBox,
+        sectorBox: sectorBox,
+        archBox: archBox,
+        rectangleSlotBox: rectangleSlotBox,
+
+        circleBox: circleBox,
         fuelBox: fuelBox,
         speedBox: speedBox,
         timeBox: timeBox,

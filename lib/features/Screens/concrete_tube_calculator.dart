@@ -247,7 +247,7 @@ class _ConcreteTubeCalculatorScreenState
       style: TextStyle(
         color: orangeColor,
         fontFamily: 'Poppins',
-        fontSize: 14,
+        fontSize: 13,
         fontWeight: FontWeight.w600,
       ),
       underline: Container(height: 0),
@@ -572,7 +572,7 @@ class _ConcreteTubeCalculatorScreenState
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 150,
+                    width: 115,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(
@@ -617,7 +617,7 @@ class _ConcreteTubeCalculatorScreenState
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 150,
+                    width: 115,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(

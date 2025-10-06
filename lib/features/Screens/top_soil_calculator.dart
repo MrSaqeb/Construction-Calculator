@@ -432,7 +432,7 @@ class _TopSoilCalculatorState extends ConsumerState<TopSoilCalculator> {
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 150,
+                    width: 110,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(

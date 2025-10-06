@@ -44,13 +44,6 @@ class _RoundPipeCalculatorState extends ConsumerState<RoundPipeCalculator> {
     "Lead": 11340, // pure lead
     "Iron": 7874, // pure iron
     "Gold": 19320, // pure gold
-    // "Brass": 8500, // average brass alloy
-    // "Copper": 8960, // pure copper
-    // "Zinc": 7135, // pure zinc
-    // "Nickel": 8908, // pure nickel
-    // "Tin": 7310, // pure tin
-    // "Silver": 10490, // pure silver
-    // "Mercury": 13534, // liquid mercury
   };
 
   // ✅ Unit Conversion Function
@@ -166,13 +159,6 @@ class _RoundPipeCalculatorState extends ConsumerState<RoundPipeCalculator> {
     "Lead",
     "Iron",
     "Gold",
-    // "Brass",
-    // "Copper",
-    // "Zinc",
-    // "Nickel",
-    // "Tin",
-    // "Silver",
-    // "Mercury",
   ];
   String selectedMaterial = "Steel";
 
@@ -221,7 +207,7 @@ class _RoundPipeCalculatorState extends ConsumerState<RoundPipeCalculator> {
                       fontFamily: 'Poppins',
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
-                      color: textColor,
+                      color: textColor.withOpacity(0.5),
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -256,7 +242,7 @@ class _RoundPipeCalculatorState extends ConsumerState<RoundPipeCalculator> {
                 alignment: Alignment.centerRight,
                 child: Container(
                   height: 55,
-                  width: 150,
+                  width: 90,
                   decoration: BoxDecoration(
                     color: Colors.white30,
                     borderRadius: const BorderRadius.horizontal(
@@ -305,7 +291,7 @@ class _RoundPipeCalculatorState extends ConsumerState<RoundPipeCalculator> {
                 fontFamily: 'Poppins',
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
-                color: textColor,
+                color: textColor.withOpacity(0.5),
               ),
             ),
           ],
@@ -525,7 +511,7 @@ class _RoundPipeCalculatorState extends ConsumerState<RoundPipeCalculator> {
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 150,
+                    width: 110,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(
@@ -547,7 +533,7 @@ class _RoundPipeCalculatorState extends ConsumerState<RoundPipeCalculator> {
             const SizedBox(height: 8),
 
             _suffixInputWithDropdown(
-              labelText: "Length", // Label
+              labelText: "Enter Length", // Label
               controller: lengthController, // Input Field
               dropdownOptions: lengthUnitOptions, // Dropdown List
               selectedValue: selectedLengthUnit, // Dropdown Selected
@@ -557,7 +543,7 @@ class _RoundPipeCalculatorState extends ConsumerState<RoundPipeCalculator> {
 
             const SizedBox(height: 8),
             _suffixInputWithDropdown(
-              labelText: "Diameter", // Label
+              labelText: "Enter Diameter", // Label
               controller: diamterSController, // Input Field
               dropdownOptions: lengthUnitOptions, // Dropdown List
               selectedValue: selectedLengthUnit, // Dropdown Selected
@@ -566,7 +552,7 @@ class _RoundPipeCalculatorState extends ConsumerState<RoundPipeCalculator> {
             ),
             const SizedBox(height: 8),
             _suffixInputWithDropdown(
-              labelText: "Thick(T)", // Label
+              labelText: "Enter Thick (T)", // Label
               controller: thickTController, // Input Field
               dropdownOptions: lengthUnitOptions, // Dropdown List
               selectedValue: selectedLengthUnit, // Dropdown Selected
@@ -577,14 +563,14 @@ class _RoundPipeCalculatorState extends ConsumerState<RoundPipeCalculator> {
             const SizedBox(height: 8),
 
             _suffixInput(
-              textarea: "Quantity",
+              textarea: "Enter Quantity",
               controller: piecesController,
               unit: "Pcs",
             ),
             const SizedBox(height: 8),
 
             _suffixInputWithDropdown(
-              labelText: "Steal Cost",
+              labelText: "Enter Steal Cost",
               controller: costOfSteelController,
               dropdownOptions: weightUnitOptions,
               selectedValue: selectedWeightUnit,

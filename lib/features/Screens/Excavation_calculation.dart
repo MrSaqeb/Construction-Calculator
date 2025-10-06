@@ -403,9 +403,6 @@ class _ExcavationCalculationScreenState
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 13),
-            const SizedBox(height: 6),
-
             Center(
               child: SvgPicture.asset(
                 'assets/icons/excavation_icon.svg',
@@ -443,7 +440,7 @@ class _ExcavationCalculationScreenState
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 150,
+                    width: 110,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(

@@ -298,117 +298,6 @@ class _ConstructionCostScreenState
     ref.read(unifiedHistoryProvider.notifier).addConstruction(newItem);
   }
 
-  Widget buildInputField({
-    required String label,
-    required String unit,
-    required TextEditingController controller,
-    bool isDropdown = false,
-    String? hintText,
-    required dynamic textColor,
-  }) {
-    return Container(
-      height: 55,
-      decoration: BoxDecoration(
-        color: Colors.white38,
-        borderRadius: BorderRadius.circular(50),
-        border: Border.all(color: Colors.black.withOpacity(0.2), width: 0.2),
-      ),
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              label,
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 14,
-                color: textColor,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-          Expanded(
-            child: TextField(
-              controller: controller,
-              keyboardType: TextInputType.number,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 14,
-                color: textColor, // ✅ user ke input ka color theme ke hisaab se
-              ),
-              decoration: InputDecoration(
-                hintText: hintText,
-                hintStyle: TextStyle(
-                  color: textColor.withOpacity(
-                    0.5,
-                  ), // ✅ hint text bhi theme ke hisaab se
-                ),
-                border: InputBorder.none,
-                isDense: true,
-                contentPadding: EdgeInsets.zero,
-              ),
-            ),
-          ),
-          Container(
-            height: 55,
-            width: 85,
-            decoration: BoxDecoration(
-              color: Colors.white30,
-              borderRadius: const BorderRadius.horizontal(
-                left: Radius.circular(50),
-                right: Radius.circular(50),
-              ),
-              border: Border.all(color: orangeColor, width: 2),
-            ),
-            child: isDropdown
-                ? _buildCurrencyDropdown()
-                : Center(
-                    child: Text(
-                      unit,
-                      style: TextStyle(
-                        color: orangeColor,
-                        fontFamily: 'Poppins',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  String formatCost(String value) {
-    // Try parse double and format to 4 decimal places
-    final double? val = double.tryParse(value);
-    if (val == null) return value;
-    return val.toStringAsFixed(4);
-  }
-
-  String formatQuantity(String value) {
-    // Value expected as "number unit", e.g. "5.00 Bags" or "12.5 Kg"
-    final parts = value.split(' ');
-    if (parts.isEmpty) return value;
-
-    final numStr = parts[0];
-    final unit = parts.length > 1 ? parts.sublist(1).join(' ') : '';
-
-    final double? numVal = double.tryParse(numStr);
-    if (numVal == null) return value;
-
-    // If integer, show without decimals, else show decimals as needed
-    String formattedNum;
-    if (numVal == numVal.roundToDouble()) {
-      formattedNum = numVal.toInt().toString();
-    } else {
-      formattedNum = numVal.toString();
-    }
-
-    return "$formattedNum $unit".trim();
-  }
-
   Widget _buildMaterialTable(
     BuildContext context,
     String title,
@@ -508,6 +397,110 @@ class _ConstructionCostScreenState
     );
   }
 
+  String formatCost(String value) {
+    // Try parse double and format to 4 decimal places
+    final double? val = double.tryParse(value);
+    if (val == null) return value;
+    return val.toStringAsFixed(4);
+  }
+
+  String formatQuantity(String value) {
+    // Value expected as "number unit", e.g. "5.00 Bags" or "12.5 Kg"
+    final parts = value.split(' ');
+    if (parts.isEmpty) return value;
+
+    final numStr = parts[0];
+    final unit = parts.length > 1 ? parts.sublist(1).join(' ') : '';
+
+    final double? numVal = double.tryParse(numStr);
+    if (numVal == null) return value;
+
+    // If integer, show without decimals, else show decimals as needed
+    String formattedNum;
+    if (numVal == numVal.roundToDouble()) {
+      formattedNum = numVal.toInt().toString();
+    } else {
+      formattedNum = numVal.toString();
+    }
+
+    return "$formattedNum $unit".trim();
+  }
+
+  Widget buildInputField({
+    required String hintText,
+    required String unit,
+    required TextEditingController controller,
+    bool isDropdown = false,
+    required Color textColor,
+  }) {
+    return Container(
+      height: 55,
+      decoration: BoxDecoration(
+        color: Colors.white30,
+        borderRadius: BorderRadius.circular(30),
+        border: Border.all(color: Colors.black.withOpacity(0.3), width: 0.5),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 15),
+              child: TextField(
+                controller: controller,
+                keyboardType: TextInputType.number,
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 14,
+                  color: textColor,
+                ),
+                decoration: InputDecoration(
+                  hintText: hintText, // ✅ hint dikhaye jab field empty ho
+                  hintStyle: TextStyle(
+                    color: textColor.withOpacity(0.5),
+                    fontWeight: FontWeight.w500,
+
+                    fontFamily: 'Poppins',
+                    fontSize: 14,
+                  ),
+                  border: InputBorder.none,
+                  isDense: true,
+                  contentPadding: EdgeInsets.zero,
+                ),
+              ),
+            ),
+          ),
+
+          Container(
+            height: 57,
+            width: 80,
+            decoration: BoxDecoration(
+              color: Colors.white30,
+              borderRadius: const BorderRadius.horizontal(
+                left: Radius.circular(45),
+                right: Radius.circular(45),
+              ),
+              border: Border.all(color: orangeColor, width: 2),
+            ),
+            child: isDropdown
+                ? _buildCurrencyDropdown()
+                : Center(
+                    child: Text(
+                      unit,
+                      style: TextStyle(
+                        color: orangeColor,
+                        fontFamily: 'Poppins',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -559,14 +552,14 @@ class _ConstructionCostScreenState
             ),
             const SizedBox(height: 20),
             buildInputField(
-              label: "Buildup Area",
+              hintText: "Enter Builtup Area",
               unit: "FT²",
               controller: areaController,
               textColor: textColor,
             ),
             const SizedBox(height: 16),
             buildInputField(
-              label: "Cost (Per Sq Feet)",
+              hintText: "Enter Cost (Per Sq Feet)",
 
               unit: selectedUnit,
               controller: costController,

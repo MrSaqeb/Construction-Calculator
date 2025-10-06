@@ -343,7 +343,7 @@ class ConstructionCalculatorScreen extends ConsumerWidget {
               )
               .toList();
 
-    final textColor = isDark ? Colors.white : Colors.black87;
+    final textColor = isDark ? Colors.white : Colors.black;
     final searchFillColor = isDark ? Colors.white30 : Colors.white;
 
     return Scaffold(
@@ -449,6 +449,8 @@ class ConstructionCalculatorScreen extends ConsumerWidget {
                   return HomeMenuButton(
                     icon: item['icon'],
                     label: item['label'] as String,
+                    circleRadius: 60, // 👈 bara circle
+                    iconSize: 35,
                     isDark: isDark,
                     onPressed: () {
                       final routeName = item['route'] as String?;

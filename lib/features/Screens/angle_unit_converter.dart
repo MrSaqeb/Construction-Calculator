@@ -102,12 +102,13 @@ class _AngleUnitConverterState extends ConsumerState<AngleUnitConverter> {
   }
 
   Widget _suffixInputWithDropdown({
-    String? labelText,
+    String? hintText,
     TextEditingController? controller,
     List<String>? dropdownOptions,
     String? selectedValue,
     ValueChanged<String?>? onChanged,
     TextInputType type = const TextInputType.numberWithOptions(decimal: true),
+    ValueChanged<String>? onChangedInput,
   }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final textColor = isDark ? Colors.white : Colors.black;
@@ -121,68 +122,59 @@ class _AngleUnitConverterState extends ConsumerState<AngleUnitConverter> {
       ),
       child: Row(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Row(
-              children: [
-                if (labelText != null) ...[
-                  Text(
-                    labelText,
-                    style: TextStyle(
+          // Input field with hint
+          if (controller != null)
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10, right: 8),
+                child: TextField(
+                  controller: controller,
+                  keyboardType: type,
+                  textAlign: TextAlign.left, // left align input and hint
+                  textAlignVertical:
+                      TextAlignVertical.center, // vertical center
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 14,
+                    color: textColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  decoration: InputDecoration(
+                    hintText: hintText ?? '0', // ✅ labelText becomes hint
+                    hintStyle: TextStyle(
+                      color: textColor.withOpacity(0.5), // theme-aware color
                       fontFamily: 'Poppins',
                       fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: textColor,
                     ),
+                    border: InputBorder.none,
+                    isDense: true,
+                    contentPadding: EdgeInsets.zero,
                   ),
-                  const SizedBox(width: 8),
-                ],
-                if (controller != null)
-                  SizedBox(
-                    width: 80,
-                    child: TextField(
-                      controller: controller,
-                      keyboardType: type,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 14,
-                        color: textColor,
-                      ),
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: '0',
-                        hintStyle: TextStyle(color: textColor.withOpacity(0.5)),
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-          ),
-
-          if (dropdownOptions != null && dropdownOptions.isNotEmpty)
-            Expanded(
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Container(
-                  height: 55,
-                  width: 150,
-                  decoration: BoxDecoration(
-                    color: Colors.white30,
-                    borderRadius: const BorderRadius.horizontal(
-                      left: Radius.circular(50),
-                      right: Radius.circular(50),
-                    ),
-                    border: Border.all(color: Colors.orange, width: 1),
-                  ),
-                  child: _buildDropdown(
-                    options: dropdownOptions,
-                    selectedValue: selectedValue ?? dropdownOptions.first,
-                    onChanged: (v) {
-                      if (onChanged != null) onChanged(v);
-                    },
-                  ),
+                  onChanged: onChangedInput,
                 ),
+              ),
+            ),
+
+          // Dropdown at the end
+          if (dropdownOptions != null && dropdownOptions.isNotEmpty)
+            Container(
+              height: 55,
+              width: 90,
+              decoration: BoxDecoration(
+                color: Colors.white30,
+                borderRadius: const BorderRadius.horizontal(
+                  left: Radius.circular(50),
+                  right: Radius.circular(50),
+                ),
+                border: Border.all(color: Colors.orange, width: 1),
+              ),
+              child: _buildDropdown(
+                options: dropdownOptions,
+                selectedValue: selectedValue ?? dropdownOptions.first,
+                onChanged: (v) {
+                  if (onChanged != null) onChanged(v);
+                  _calculate(); // dropdown change callback
+                },
               ),
             ),
         ],
@@ -291,7 +283,7 @@ class _AngleUnitConverterState extends ConsumerState<AngleUnitConverter> {
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
-          "Frequency Unit Converter",
+          "Angle Unit Converter",
           style: TextStyle(
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w600,
@@ -319,7 +311,7 @@ class _AngleUnitConverterState extends ConsumerState<AngleUnitConverter> {
           children: [
             Center(
               child: SvgPicture.asset(
-                'assets/icons/frequency_icon.svg',
+                'assets/icons/angle_icon.svg',
                 height: 85,
                 color: orangeColor,
               ),
@@ -329,7 +321,7 @@ class _AngleUnitConverterState extends ConsumerState<AngleUnitConverter> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "Frequency",
+                "Angle ",
                 style: TextStyle(
                   fontFamily: 'Poppins',
                   color: textColor,
@@ -340,7 +332,7 @@ class _AngleUnitConverterState extends ConsumerState<AngleUnitConverter> {
             ),
 
             _suffixInputWithDropdown(
-              labelText: "Enter Value:",
+              hintText: "Enter Value:",
               controller: angleController,
               dropdownOptions: angleUnits,
               selectedValue: selectedUnit,

@@ -405,8 +405,6 @@ class _AntiTermiteCalculatorScreenState
                 color: orangeColor,
               ),
             ),
-            const SizedBox(height: 18),
-            const SizedBox(height: 20),
 
             // UNIT DROPDOWN
             Container(
@@ -436,7 +434,7 @@ class _AntiTermiteCalculatorScreenState
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 150,
+                    width: 110,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(

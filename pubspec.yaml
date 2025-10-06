@@ -42,6 +42,12 @@ dependencies:
   hive_flutter:
   path_provider:
   analyzer: ^6.0.0 
+  sensors_plus:
+  audioplayers: ^6.0.0
+   
+
+  # Resizable box package
+  flutter_box_transform: ^0.4.7
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -78,6 +84,7 @@ flutter:
      - assets/images/
      - assets/icons/
      - assets/AppIcon/
+     - assets/sounds/preview.mp3
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -101,7 +108,10 @@ flutter:
         - asset: assets/fonts/Poppins-Regular.ttf
         - asset: assets/fonts/Poppins-SemiBold.ttf
           weight: 600
-        
+
+    - family: DSEG14
+      fonts:
+        - asset: assets/fonts/DSEG/fonts-DSEG_v046/DSEG14-Classic/DSEG14Classic-Regular.ttf   
  
   #   - family: Schyler
   #     fonts:

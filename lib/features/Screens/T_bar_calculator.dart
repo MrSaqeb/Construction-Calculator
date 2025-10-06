@@ -143,13 +143,6 @@ class _TBarCalculatorState extends ConsumerState<TBarCalculator> {
     "Lead",
     "Iron",
     "Gold",
-    // "Brass",
-    // "Copper",
-    // "Zinc",
-    // "Nickel",
-    // "Tin",
-    // "Silver",
-    // "Mercury",
   ];
   String selectedMaterial = "Steel";
 
@@ -213,7 +206,7 @@ class _TBarCalculatorState extends ConsumerState<TBarCalculator> {
                       style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 14,
-                        color: textColor,
+                        color: textColor.withOpacity(0.5),
                       ),
                       decoration: InputDecoration(
                         border: InputBorder.none,
@@ -233,7 +226,7 @@ class _TBarCalculatorState extends ConsumerState<TBarCalculator> {
                 alignment: Alignment.centerRight,
                 child: Container(
                   height: 55,
-                  width: 150,
+                  width: 90,
                   decoration: BoxDecoration(
                     color: Colors.white30,
                     borderRadius: const BorderRadius.horizontal(
@@ -296,7 +289,7 @@ class _TBarCalculatorState extends ConsumerState<TBarCalculator> {
               style: TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 14,
-                color: textColor,
+                color: textColor.withOpacity(0.5),
               ),
               decoration: InputDecoration(
                 border: InputBorder.none,
@@ -502,7 +495,7 @@ class _TBarCalculatorState extends ConsumerState<TBarCalculator> {
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 150,
+                    width: 110,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(
@@ -524,7 +517,7 @@ class _TBarCalculatorState extends ConsumerState<TBarCalculator> {
             const SizedBox(height: 8),
 
             _suffixInputWithDropdown(
-              labelText: "Length(L)", // Label
+              labelText: "Enter Length(L)", // Label
               controller: lengthController, // Input Field
               dropdownOptions: lengthUnitOptions, // Dropdown List
               selectedValue: selectedLengthUnit, // Dropdown Selected
@@ -534,7 +527,7 @@ class _TBarCalculatorState extends ConsumerState<TBarCalculator> {
 
             const SizedBox(height: 8),
             _suffixInputWithDropdown(
-              labelText: "Height(H)", // Label
+              labelText: "Enter Height(H)", // Label
               controller: heightController, // Input Field
               dropdownOptions: lengthUnitOptions, // Dropdown List
               selectedValue: selectedLengthUnit, // Dropdown Selected
@@ -543,7 +536,7 @@ class _TBarCalculatorState extends ConsumerState<TBarCalculator> {
             ),
             const SizedBox(height: 8),
             _suffixInputWithDropdown(
-              labelText: "Width(W)", // Label
+              labelText: "Enter Width(W)", // Label
               controller: widthWController, // Input Field
               dropdownOptions: lengthUnitOptions, // Dropdown List
               selectedValue: selectedLengthUnit, // Dropdown Selected
@@ -554,13 +547,13 @@ class _TBarCalculatorState extends ConsumerState<TBarCalculator> {
             const SizedBox(height: 8),
 
             _suffixInput(
-              textarea: "Qunatity",
+              textarea: "Enter Qunatity",
               controller: piecesController,
               unit: "Pcs",
             ),
             const SizedBox(height: 8),
             _suffixInputWithDropdown(
-              labelText: "Steel Cost", // Label
+              labelText: "Enter Steel Cost", // Label
               controller: costOfSteelController, // Input Field
               dropdownOptions: weightUnitOptions, // Dropdown List
               selectedValue: selectedWeightUnit, // Dropdown Selected

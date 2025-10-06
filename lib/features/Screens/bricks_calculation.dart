@@ -169,8 +169,7 @@ class _BrickCalculationScreenState
 
     // 2️⃣ Hive box me store karo
     if (Hive.isBoxOpen(HiveBoxes.brickHistory)) {
-    } else {
-    }
+    } else {}
 
     // 3️⃣ UnifiedHistoryProvider me add karo using addBrick
     ref.read(unifiedHistoryProvider.notifier).addBrick(historyItem);
@@ -572,7 +571,7 @@ class _BrickCalculationScreenState
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 180,
+                    width: 120,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(

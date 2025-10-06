@@ -170,7 +170,7 @@ class _BoundaryWallCalculatorScreenState
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w600,
             color: Colors.white,
-            fontSize: 18,
+            fontSize: 16,
           ),
         ),
         actions: [
@@ -232,7 +232,7 @@ class _BoundaryWallCalculatorScreenState
                   const Spacer(),
                   Container(
                     height: 55,
-                    width: 180,
+                    width: 110,
                     decoration: BoxDecoration(
                       color: Colors.white30,
                       borderRadius: const BorderRadius.horizontal(
