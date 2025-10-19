@@ -49,9 +49,6 @@ class DrawNotifier extends StateNotifier<DrawState> {
     );
 
     addAction(action); // history me bhi add karega
-    print(
-      "[Notifier] Dimension line added: ${action.id} at $position with text '$text'",
-    );
   }
 
   //-------------------Selcet Obejct---------------------
@@ -64,7 +61,6 @@ class DrawNotifier extends StateNotifier<DrawState> {
       }
     }
 
-    print("❌ No action found at $position");
     state = state.copyWith(selectedId: null);
   }
 

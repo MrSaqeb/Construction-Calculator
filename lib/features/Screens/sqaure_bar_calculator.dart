@@ -198,12 +198,13 @@ class _SqaureBarCalculatorState extends ConsumerState<SqaureBarCalculator> {
   String selectedWeightUnit = "kg";
 
   Widget _suffixInputWithDropdown({
-    String? labelText,
+    String? hintText, // ✅ labelText hatado, hintText use karo
     TextEditingController? controller,
     List<String>? dropdownOptions,
     String? selectedValue,
     ValueChanged<String?>? onChanged,
     TextInputType type = const TextInputType.numberWithOptions(decimal: true),
+    ValueChanged<String>? onChangedInput,
   }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final textColor = isDark ? Colors.white : Colors.black;
@@ -217,68 +218,55 @@ class _SqaureBarCalculatorState extends ConsumerState<SqaureBarCalculator> {
       ),
       child: Row(
         children: [
-          // Left side content with padding
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Row(
-              children: [
-                if (labelText != null) ...[
-                  Text(
-                    labelText,
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: textColor,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                ],
-                if (controller != null)
-                  SizedBox(
-                    width: 80,
-                    child: TextField(
-                      controller: controller,
-                      keyboardType: type,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 14,
-                        color: textColor,
-                      ),
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: '0',
-                        hintStyle: TextStyle(color: textColor.withOpacity(0.5)),
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-          ),
-
-          // Dropdown always at the end (no padding)
-          if (dropdownOptions != null && dropdownOptions.isNotEmpty)
+          // Input field
+          if (controller != null)
             Expanded(
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Container(
-                  height: 55,
-                  width: 90,
-                  decoration: BoxDecoration(
-                    color: Colors.white30,
-                    borderRadius: const BorderRadius.horizontal(
-                      left: Radius.circular(50),
-                      right: Radius.circular(50),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 14, right: 8),
+                child: TextField(
+                  controller: controller,
+                  keyboardType: type,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 14,
+                    color: textColor,
+                  ),
+                  decoration: InputDecoration(
+                    hintText: hintText ?? '0', // ✅ hint text yahin set hoga
+                    hintStyle: TextStyle(
+                      color: textColor.withOpacity(0.5),
+                      fontWeight: FontWeight.w500,
                     ),
-                    border: Border.all(color: Colors.orange, width: 1),
+                    border: InputBorder.none,
+                    isDense: true,
+                    contentPadding: EdgeInsets.zero,
                   ),
-                  child: _buildDropdown(
-                    options: dropdownOptions,
-                    selectedValue: selectedValue ?? dropdownOptions.first,
-                    onChanged: onChanged ?? (_) {},
-                  ),
+                  onChanged: onChangedInput,
                 ),
+              ),
+            ),
+
+          // Dropdown
+          if (dropdownOptions != null && dropdownOptions.isNotEmpty)
+            Container(
+              height: 55,
+              width: 120,
+              decoration: BoxDecoration(
+                color: Colors.white30,
+                borderRadius: const BorderRadius.horizontal(
+                  left: Radius.circular(50),
+                  right: Radius.circular(50),
+                ),
+                border: Border.all(color: Colors.orange, width: 1),
+              ),
+              child: _buildDropdown(
+                options: dropdownOptions,
+                selectedValue: selectedValue ?? dropdownOptions.first,
+                onChanged: (v) {
+                  if (onChanged != null) onChanged(v);
+                  _calculate();
+                },
               ),
             ),
         ],
@@ -288,7 +276,7 @@ class _SqaureBarCalculatorState extends ConsumerState<SqaureBarCalculator> {
 
   Widget _suffixInput({
     required TextEditingController controller,
-    String? textarea, // Optional text at the start
+    String? hintText, // ✅ yahi text hint banega
     String? unit, // Optional unit at the end
     TextInputType type = const TextInputType.numberWithOptions(decimal: true),
   }) {
@@ -302,41 +290,36 @@ class _SqaureBarCalculatorState extends ConsumerState<SqaureBarCalculator> {
         borderRadius: BorderRadius.circular(50),
         border: Border.all(width: 0.4, color: Colors.black.withOpacity(0.2)),
       ),
-      padding: const EdgeInsets.only(left: 10),
       child: Row(
         children: [
-          // Optional Start Text
-          if (textarea != null && textarea.isNotEmpty) ...[
-            Text(
-              textarea,
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: textColor,
-              ),
-            ),
-          ],
-
-          // Center Input
+          // Input Field — textarea ko hint me shift kar diya
           Expanded(
-            child: TextField(
-              controller: controller,
-              keyboardType: type,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 14,
-                color: textColor,
-              ),
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: '0',
-                hintStyle: TextStyle(color: textColor.withOpacity(0.5)),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 12, right: 8),
+              child: TextField(
+                controller: controller,
+                keyboardType: type,
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 14,
+                  color: textColor,
+                ),
+                decoration: InputDecoration(
+                  hintText: hintText ?? '',
+                  hintStyle: TextStyle(
+                    color: textColor.withOpacity(0.5),
+                    fontWeight: FontWeight.w500,
+                  ),
+                  border: InputBorder.none,
+                  isDense: true,
+                  contentPadding: EdgeInsets.zero,
+                ),
               ),
             ),
           ),
 
+          // Unit Box
           Container(
             height: 55,
             width: 55,
@@ -349,15 +332,17 @@ class _SqaureBarCalculatorState extends ConsumerState<SqaureBarCalculator> {
               border: Border.all(color: orangeColor, width: 1),
             ),
             child: Center(
-              child: Text(
-                unit!,
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                  color: orangeColor,
-                ),
-              ),
+              child: unit?.trim().isNotEmpty == true
+                  ? Text(
+                      unit!,
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: orangeColor,
+                      ),
+                    )
+                  : const SizedBox.shrink(),
             ),
           ),
         ],
@@ -555,7 +540,7 @@ class _SqaureBarCalculatorState extends ConsumerState<SqaureBarCalculator> {
             const SizedBox(height: 8),
 
             _suffixInputWithDropdown(
-              labelText: "Enter Length(L)", // Label
+              hintText: "Enter Length(L)", // Label
               controller: lengthController, // Input Field
               dropdownOptions: lengthUnitOptions, // Dropdown List
               selectedValue: selectedLengthUnit, // Dropdown Selected
@@ -565,7 +550,7 @@ class _SqaureBarCalculatorState extends ConsumerState<SqaureBarCalculator> {
 
             const SizedBox(height: 8),
             _suffixInputWithDropdown(
-              labelText: "Enter Height(H)", // Label
+              hintText: "Enter Height(H)", // Label
               controller: heightController, // Input Field
               dropdownOptions: lengthUnitOptions, // Dropdown List
               selectedValue: selectedLengthUnit, // Dropdown Selected
@@ -574,7 +559,7 @@ class _SqaureBarCalculatorState extends ConsumerState<SqaureBarCalculator> {
             ),
             const SizedBox(height: 8),
             _suffixInputWithDropdown(
-              labelText: "Enter Width(W)", // Label
+              hintText: "Enter Width(W)", // Label
               controller: widthWController, // Input Field
               dropdownOptions: lengthUnitOptions, // Dropdown List
               selectedValue: selectedLengthUnit, // Dropdown Selected
@@ -585,14 +570,14 @@ class _SqaureBarCalculatorState extends ConsumerState<SqaureBarCalculator> {
             const SizedBox(height: 8),
 
             _suffixInput(
-              textarea: "Enter Quantity",
+              hintText: "Enter Quantity",
               controller: piecesController,
               unit: "Pcs",
             ),
             const SizedBox(height: 8),
 
             _suffixInputWithDropdown(
-              labelText: "Enter Steel Cost",
+              hintText: "Enter Steel Cost",
               controller: costOfSteelController,
               dropdownOptions: weightUnitOptions,
               selectedValue: selectedWeightUnit,

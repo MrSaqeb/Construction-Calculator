@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use, use_build_context_synchronously, unnecessary_to_list_in_spreads
+
 import 'package:construction_calculator/Domain/entities/draw_plain_model.dart';
 import 'package:construction_calculator/features/Draw_plain/Widgets/drawplain_canves.dart';
 import 'package:construction_calculator/features/Draw_plain/draw_plain_provider.dart';
@@ -600,7 +602,7 @@ class _DrawPlanScreenState extends ConsumerState<DrawPlanScreen> {
               width: 90,
               child: GestureDetector(
                 onTap: () {
-                  print("Tab tapped: ${tab['mode']}"); // ✅ Konsa tab click hua
+                  // ✅ Konsa tab click hua
 
                   if (tab["mode"] == "square") {
                     // // ✅ Reset line selection for new square
@@ -652,7 +654,6 @@ class _DrawPlanScreenState extends ConsumerState<DrawPlanScreen> {
                     // Draw gestures + picker sirf Draw Mode tab ke liye
                     ref.read(drawModeProvider.notifier).state = "drawmode";
                     ref.read(isColorLayerVisibleProvider.notifier).state = true;
-                    print("Draw Mode activated");
                   }
 
                   if (tab["mode"] == "color") {
@@ -660,7 +661,6 @@ class _DrawPlanScreenState extends ConsumerState<DrawPlanScreen> {
                     ref.read(drawModeProvider.notifier).state =
                         "draw"; // freehand drawing
                     ref.read(isColorLayerVisibleProvider.notifier).state = true;
-                    print("Color tab activated");
                   }
 
                   ref.read(drawModeProvider.notifier).state = tab["mode"]!;

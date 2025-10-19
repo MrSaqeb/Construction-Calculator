@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 
 class ColorPickerWidget extends StatelessWidget {
@@ -6,11 +8,11 @@ class ColorPickerWidget extends StatelessWidget {
   final ValueChanged<Color> onColorChanged;
 
   const ColorPickerWidget({
-    Key? key,
+    super.key,
     required this.availableColors,
     required this.selectedColor,
     required this.onColorChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

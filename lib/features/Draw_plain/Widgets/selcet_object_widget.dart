@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 
 class ColorAndStrokePicker extends StatelessWidget {
@@ -11,7 +13,7 @@ class ColorAndStrokePicker extends StatelessWidget {
   final VoidCallback onClose; // ✅ new callback
 
   const ColorAndStrokePicker({
-    Key? key,
+    super.key,
     required this.availableColors,
     required this.selectedColor,
     required this.strokeWidth,
@@ -20,7 +22,7 @@ class ColorAndStrokePicker extends StatelessWidget {
     required this.onClose, // ✅ required
     this.minStroke = 1,
     this.maxStroke = 15,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

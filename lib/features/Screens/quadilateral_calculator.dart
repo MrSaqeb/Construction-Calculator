@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:io';
 import 'package:construction_calculator/Domain/entities/circle_history_item.dart';
 import 'package:flutter/material.dart';

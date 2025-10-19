@@ -1,4 +1,6 @@
 // === Custom Painter ===
+// ignore_for_file: deprecated_member_use
+
 import 'package:construction_calculator/features/Draw_plain/draw_plain_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -45,7 +47,7 @@ class FreehandColorStrokePicker extends StatelessWidget {
   final VoidCallback onClose;
 
   const FreehandColorStrokePicker({
-    Key? key,
+    super.key,
     required this.availableColors,
     required this.selectedColor,
     required this.strokeWidth,
@@ -54,7 +56,7 @@ class FreehandColorStrokePicker extends StatelessWidget {
     required this.onClose,
     this.minStroke = 1,
     this.maxStroke = 15,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +130,6 @@ class FreehandColorStrokePicker extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: GestureDetector(
                 onTap: () {
-                  // TODO: Freehand style action
                 },
                 child: Container(
                   padding: const EdgeInsets.symmetric(
@@ -354,12 +355,12 @@ class FreehandColorPicker extends StatelessWidget {
   final VoidCallback onClose;
 
   const FreehandColorPicker({
-    Key? key,
+    super.key,
     required this.availableColors,
     required this.selectedColor,
     required this.onColorChanged,
     required this.onClose,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

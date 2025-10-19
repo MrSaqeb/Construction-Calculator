@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:construction_calculator/riverpode_providers/draw_plain_notifer.dart';

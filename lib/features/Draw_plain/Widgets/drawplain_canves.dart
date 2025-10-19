@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:construction_calculator/features/Draw_plain/Widgets/catagory_images_plain.dart';
 import 'package:construction_calculator/features/Draw_plain/Widgets/drawfreehandrectangl.dart';
 import 'package:construction_calculator/features/Draw_plain/Widgets/drawmode_tool.dart';
@@ -334,8 +336,9 @@ class _DrawPlanCanvasState extends State<DrawPlanCanvas> {
     final drawMode = ref.watch(drawModeProvider);
     final isPickerVisible = ref.watch(isColorLayerVisibleProvider);
 
-    if (drawMode != "drawmode" || !isPickerVisible)
+    if (drawMode != "drawmode" || !isPickerVisible) {
       return const SizedBox.shrink();
+    }
 
     final color = ref.watch(drawModeStrokeColorProvider);
     final stroke = ref.watch(drawModeStrokeWidthProvider);
